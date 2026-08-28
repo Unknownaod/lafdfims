@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+
+>
+
+<title>Other Records Request | Los Angeles Fire Department</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f4f4;
+    color: #222;
+}
+
+
+/* ================================
+   CITY BAR
+================================= */
+
+.city-bar {
+    background: #eeeeee;
+    border-bottom: 1px solid #d5d5d5;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+    padding: 0 55px;
+    font-size: 12px;
+    color: #444;
+}
+
+.city-bar span {
+    font-weight: 600;
+}
+
+
+/* ================================
+   HEADER
+================================= */
+
+header {
+    background: #b5121b;
+    min-height: 82px;
+    display: flex;
+    align-items: center;
+    padding: 0 55px;
+    color: white;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.lafd-logo {
+    width: 54px;
+    height: 54px;
+    object-fit: contain;
+    background: white;
+    border-radius: 50%;
+    padding: 3px;
+}
+
+.brand-text h1 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.brand-text p {
+    font-size: 11px;
+    color: #eee;
+    margin-top: 3px;
+}
+
+nav {
+    margin-left: auto;
+    display: flex;
+    gap: 28px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* ================================
+   HERO
+================================= */
+
+.hero {
+    background:
+        linear-gradient(
+            rgba(0,0,0,.65),
+            rgba(0,0,0,.65)
+        ),
+        url("https://media.discordapp.net/attachments/1394469502061772811/1397741145932697630/Screenshot_2025-07-23_193808.png?ex=6a9182a1&is=6a903121&hm=caf47823a2dc8854e047d875ce7096889dc503df09235f35c02ccd2ee73e9ba2&=&format=webp&quality=lossless")
+        center/cover;
+
+    min-height: 220px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: white;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #ddd;
+    font-size: 14px;
+}
+
+
+/* ================================
+   MAIN
+================================= */
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 45px 25px 70px;
+}
+
+.form-card {
+    background: white;
+    border: 1px solid #ddd;
+
+    box-shadow:
+        0 2px 10px rgba(0,0,0,.06);
+
+    padding: 35px;
+}
+
+.form-card h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.red-line {
+    width: 55px;
+    height: 4px;
+    background: #b5121b;
+    margin: 12px 0 25px;
+}
+
+
+/* ================================
+   NOTICE
+================================= */
+
+.notice {
+    background: #fff8e5;
+    border: 1px solid #ead9a5;
+
+    padding: 16px;
+
+    margin-bottom: 28px;
+
+    font-size: 13px;
+    line-height: 1.6;
+
+    color: #665522;
+}
+
+.notice strong {
+    color: #4f4119;
+}
+
+
+/* ================================
+   FORM
+================================= */
+
+.form-section {
+    margin-bottom: 30px;
+}
+
+.form-section h3 {
+    font-size: 17px;
+
+    border-bottom:
+        2px solid #b5121b;
+
+    padding-bottom: 9px;
+
+    margin-bottom: 18px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 17px;
+}
+
+label {
+    display: block;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+
+    color: #555;
+
+    margin-bottom: 7px;
+}
+
+input,
+select,
+textarea {
+
+    width: 100%;
+
+    border: 1px solid #ccc;
+
+    background: white;
+
+    padding: 12px;
+
+    font-size: 13px;
+
+    outline: none;
+
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+
+    border-color: #b5121b;
+
+}
+
+textarea {
+
+    min-height: 145px;
+
+    resize: vertical;
+
+}
+
+
+/* ================================
+   CHECKBOX
+================================= */
+
+.checkbox {
+
+    display: flex;
+
+    gap: 10px;
+
+    align-items: flex-start;
+
+    margin-top: 10px;
+
+}
+
+.checkbox input {
+
+    width: auto;
+
+    margin-top: 3px;
+
+}
+
+.checkbox label {
+
+    text-transform: none;
+
+    font-weight: normal;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+}
+
+
+/* ================================
+   SUBMIT
+================================= */
+
+.submit {
+
+    background: #b5121b;
+
+    color: white;
+
+    border: none;
+
+    padding: 14px 25px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+.submit:hover {
+
+    background: #951019;
+
+}
+
+
+/* ================================
+   FOOTER
+================================= */
+
+footer {
+
+    background: #111;
+
+    color: #aaa;
+
+    text-align: center;
+
+    padding: 28px;
+
+    font-size: 12px;
+
+}
+
+
+/* ================================
+   MOBILE
+================================= */
+
+@media (max-width: 700px) {
+
+    header {
+
+        padding: 15px 20px;
+
+    }
+
+    nav {
+
+        display: none;
+
+    }
+
+    .city-bar {
+
+        padding: 0 20px;
+
+    }
+
+    .grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .form-card {
+
+        padding: 22px;
+
+    }
+
+    .hero h2 {
+
+        font-size: 29px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================================
+     CITY BAR
+================================= -->
+
+<div class="city-bar">
+
+```
+<span>
+    An official website of the City of Los Angeles
+</span>
+```
+
+</div>
+
+<!-- ================================
+     HEADER
+================================= -->
+
+<header>
+
+<div class="brand">
+
+```
+<img
+    src="lafd-logo.png"
+    class="lafd-logo"
+    alt="Los Angeles Fire Department"
+>
+
+<div class="brand-text">
+
+    <h1>
+        Los Angeles Fire Department
+    </h1>
+
+    <p>
+        City of Los Angeles
+    </p>
+
+</div>
+```
+
+</div>
+
+<nav>
+
+```
+<a href="index.html">
+    Home
+</a>
+
+<a href="about.html">
+    About
+</a>
+
+<a href="stations.html">
+    Stations
+</a>
+
+<a href="careers.html">
+    Careers
+</a>
+
+<a href="contact.html">
+    Contact
+</a>
+```
+
+</nav>
+
+</header>
+
+<!-- ================================
+     HERO
+================================= -->
+
+<section class="hero">
+
+<div>
+
+```
+<h2>
+    Other Records Request
+</h2>
+
+<p>
+    Submit a general request for Los Angeles Fire Department records.
+</p>
+```
+
+</div>
+
+</section>
+
+<!-- ================================
+     MAIN
+================================= -->
+
+<main class="container">
+
+<div class="form-card">
+
+```
+<h2>
+    General Records Request Form
+</h2>
+
+
+<div class="red-line"></div>
+
+
+<div class="notice">
+
+    <strong>
+        Important:
+    </strong>
+
+    Use this form when you are unsure which records request
+    category applies to your inquiry. Please provide as much
+    information as possible so the requested records can be
+    properly identified and reviewed.
+
+</div>
+
+
+<form onsubmit="submitForm(event)">
+
+
+    <!-- ================================
+         REQUESTOR INFORMATION
+    ================================= -->
+
+    <div class="form-section">
+
+        <h3>
+            Requestor Information
+        </h3>
+
+
+        <div class="grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    name="name"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Organization
+                </label>
+
+                <input
+                    type="text"
+                    name="organization"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    name="email"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Preferred Response Method
+                </label>
+
+                <select
+                    name="responseMethod"
+                    required
+                >
+
+                    <option value="">
+                        Select
+                    </option>
+
+                    <option>
+                        Email
+                    </option>
+
+                    <option>
+                        Electronic Delivery
+                    </option>
+
+                    <option>
+                        No Preference
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================
+         REQUEST INFORMATION
+    ================================= -->
+
+    <div class="form-section">
+
+        <h3>
+            Request Information
+        </h3>
+
+
+        <div class="form-group">
+
+            <label>
+                Type of Records
+            </label>
+
+            <select
+                name="recordType"
+                required
+            >
+
+                <option value="">
+                    Select
+                </option>
+
+                <option>
+                    Fire Incident Records
+                </option>
+
+                <option>
+                    Fire Prevention Records
+                </option>
+
+                <option>
+                    Fire Investigation Records
+                </option>
+
+                <option>
+                    Administrative Records
+                </option>
+
+                <option>
+                    Training Records
+                </option>
+
+                <option>
+                    Personnel Records
+                </option>
+
+                <option>
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Incident / Event Date
+                </label>
+
+                <input
+                    type="date"
+                    name="incidentDate"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Incident / Event Number
+                </label>
+
+                <input
+                    type="text"
+                    name="incidentNumber"
+                    placeholder="If known"
+                >
+
+            </div>
+
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Records Requested
+            </label>
+
+            <textarea
+                name="records"
+                placeholder="Describe the records or information you are requesting."
+                required
+            ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Additional Information
+            </label>
+
+            <textarea
+                name="additional"
+                placeholder="Provide any additional information that may help identify the records."
+            ></textarea>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ================================
+         CERTIFICATION
+    ================================= -->
+
+    <div class="checkbox">
+
+        <input
+            type="checkbox"
+            required
+        >
+
+        <label>
+
+            I certify that the information provided in this
+            request is accurate to the best of my knowledge.
+            I understand that records may be subject to
+            applicable disclosure restrictions, exemptions,
+            redactions, or other legal requirements.
+
+        </label>
+
+    </div>
+
+
+    <br>
+
+
+    <button
+        type="submit"
+        class="submit"
+    >
+        SUBMIT RECORDS REQUEST
+    </button>
+
+
+</form>
+```
+
+</div>
+
+</main>
+
+<!-- ================================
+     FOOTER
+================================= -->
+
+<footer>
+
+```
+© 2026 Los Angeles Fire Department — FiveM Roleplay
+```
+
+</footer>
+
+<script>
+
+async function submitForm(event) {
+
+    event.preventDefault();
+
+
+    const form =
+        event.target;
+
+
+    const number =
+        "LAFD-" +
+        new Date().getFullYear() +
+        "-" +
+        Math.floor(
+            100000 +
+            Math.random() * 900000
+        );
+
+
+    const data =
+        new FormData(form);
+
+
+    const webhookURL =
+        "https://discordapp.com/api/webhooks/1542693212039159949/BgMDZBMVDs_ru0N5ntGtApb7WoutEL-lZMACZD4vugrjP1sWN_EzsN_KNuCuKiaEg4VL";
+
+
+    const message = {
+
+        username:
+            "LAFD Records Requests",
+
+        embeds: [
+
+            {
+
+                title:
+                    "New General Records Request",
+
+                color:
+                    11800859,
+
+                fields: [
+
+                    {
+                        name:
+                            "Request Number",
+
+                        value:
+                            number,
+
+                        inline:
+                            true
+                    },
+
+                    {
+                        name:
+                            "Name",
+
+                        value:
+                            data.get("name") || "N/A",
+
+                        inline:
+                            true
+                    },
+
+                    {
+                        name:
+                            "Organization",
+
+                        value:
+                            data.get("organization") || "N/A",
+
+                        inline:
+                            true
+                    },
+
+                    {
+                        name:
+                            "Email",
+
+                        value:
+                            data.get("email") || "N/A",
+
+                        inline:
+                            true
+                    },
+
+                    {
+                        name:
+                            "Response Method",
+
+                        value:
+                            data.get("responseMethod") || "N/A",
+
+                        inline:
+                            true
+                    },
+
+                    {
+                        name:
+                            "Record Type",
+
+                        value:
+                            data.get("recordType") || "N/A",
+
+                        inline:
+                            true
+                    },
+
+                    {
+                        name:
+                            "Incident / Event Date",
+
+                        value:
+                            data.get("incidentDate") || "N/A",
+
+                        inline:
+                            true
+                    },
+
+                    {
+                        name:
+                            "Incident / Event Number",
+
+                        value:
+                            data.get("incidentNumber") || "N/A",
+
+                        inline:
+                            true
+                    },
+
+                    {
+                        name:
+                            "Records Requested",
+
+                        value:
+                            data.get("records") || "N/A"
+                    },
+
+                    {
+                        name:
+                            "Additional Information",
+
+                        value:
+                            data.get("additional") || "N/A"
+                    }
+
+                ]
+
+            }
+
+        ]
+
+    };
+
+
+    try {
+
+        await fetch(
+            webhookURL,
+            {
+
+                method:
+                    "POST",
+
+                headers:
+                    {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                body:
+                    JSON.stringify(message)
+
+            }
+        );
+
+    }
+
+    catch (error) {
+
+        console.log(
+            "Webhook error:",
+            error
+        );
+
+    }
+
+
+    alert(
+
+        "Records request submitted successfully.\n\n" +
+
+        "Request Number: " +
+        number +
+
+        "\n\nPlease retain this number for your records."
+
+    );
+
+
+    form.reset();
+
+}
+
+</script>
+
+</body>
+
+</html>
