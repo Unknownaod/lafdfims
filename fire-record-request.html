@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fire Incident Report Request | Los Angeles Fire Department</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        background: #f1f1f1;
+        color: #222;
+    }
+
+    .city-bar {
+        background: #eeeeee;
+        border-bottom: 1px solid #d5d5d5;
+        min-height: 38px;
+        display: flex;
+        align-items: center;
+        padding: 0 55px;
+        font-size: 12px;
+        color: #444;
+    }
+
+    header {
+        background: #b5121b;
+        min-height: 82px;
+        display: flex;
+        align-items: center;
+        padding: 0 55px;
+        color: white;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .lafd-logo {
+        width: 54px;
+        height: 54px;
+        object-fit: contain;
+        background: white;
+        border-radius: 50%;
+        padding: 3px;
+    }
+
+    .brand-text h1 {
+        font-size: 20px;
+    }
+
+    .brand-text p {
+        font-size: 11px;
+        margin-top: 3px;
+        color: #eee;
+    }
+
+    nav {
+        margin-left: auto;
+        display: flex;
+        gap: 28px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    .hero {
+        background:
+            linear-gradient(rgba(0,0,0,.67), rgba(0,0,0,.67)),
+            url("https://media.discordapp.net/attachments/1394469502061772811/1397741145932697630/Screenshot_2025-07-23_193808.png?format=webp")
+            center/cover;
+
+        min-height: 220px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+    }
+
+    .hero h2 {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    .hero p {
+        color: #ddd;
+        font-size: 14px;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 45px 25px 70px;
+    }
+
+    .form-card {
+        background: white;
+        border: 1px solid #d7d7d7;
+        box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    }
+
+    .form-header {
+        padding: 25px 30px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .form-header h2 {
+        font-size: 24px;
+        margin-bottom: 8px;
+    }
+
+    .form-header p {
+        color: #666;
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    .notice {
+        margin: 25px 30px 0;
+        padding: 15px;
+        background: #fff8e5;
+        border: 1px solid #ead9a5;
+        color: #65551f;
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    form {
+        padding: 30px;
+    }
+
+    .section {
+        margin-bottom: 30px;
+    }
+
+    .section h3 {
+        font-size: 16px;
+        border-bottom: 2px solid #b5121b;
+        padding-bottom: 9px;
+        margin-bottom: 20px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .field.full {
+        grid-column: 1 / -1;
+    }
+
+    label {
+        font-size: 11px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 7px;
+        color: #555;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        border: 1px solid #ccc;
+        padding: 12px;
+        font-size: 13px;
+        outline: none;
+        background: white;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        border-color: #b5121b;
+    }
+
+    textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    .help {
+        font-size: 11px;
+        color: #777;
+        margin-top: 5px;
+    }
+
+    .checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .checkbox input {
+        width: auto;
+        margin-top: 2px;
+    }
+
+    .checkbox label {
+        text-transform: none;
+        font-weight: normal;
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    .form-footer {
+        border-top: 1px solid #ddd;
+        padding-top: 25px;
+    }
+
+    .submit {
+        background: #b5121b;
+        color: white;
+        border: none;
+        padding: 13px 24px;
+        font-size: 11px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .submit:hover {
+        background: #951019;
+    }
+
+    .cancel {
+        display: inline-block;
+        margin-left: 10px;
+        background: #333;
+        color: white;
+        text-decoration: none;
+        padding: 13px 24px;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    footer {
+        background: #111;
+        color: #aaa;
+        text-align: center;
+        padding: 27px;
+        font-size: 12px;
+    }
+
+    @media(max-width:750px) {
+
+        .city-bar {
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 15px 20px;
+        }
+
+        nav {
+            display: none;
+        }
+
+        .grid {
+            grid-template-columns: 1fr;
+        }
+
+        .field.full {
+            grid-column: auto;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="city-bar">
+    <span>An official website of the City of Los Angeles</span>
+</div>
+
+<header>
+
+
+<div class="brand">
+
+    <img src="lafd-logo.png"
+         alt="Los Angeles Fire Department"
+         class="lafd-logo">
+
+    <div class="brand-text">
+
+        <h1>Los Angeles Fire Department</h1>
+
+        <p>City of Los Angeles</p>
+
+    </div>
+
+</div>
+
+<nav>
+
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="stations.html">Stations</a>
+    <a href="careers.html">Careers</a>
+    <a href="contact.html">Contact</a>
+
+</nav>
+
+
+</header>
+
+<section class="hero">
+
+
+<div>
+
+    <h2>Fire Incident Report Request</h2>
+
+    <p>Request an eligible fire incident report.</p>
+
+</div>
+
+
+</section>
+
+<main class="container">
+
+<div class="form-card">
+
+
+<div class="form-header">
+
+    <h2>Fire Incident Report Request Form</h2>
+
+    <p>
+        Complete the form below with as much information as possible
+        to assist with locating the requested incident record.
+    </p>
+
+</div>
+
+<div class="notice">
+
+    <strong>FiveM Roleplay Notice:</strong>
+    This website is a fictional roleplay system and does not submit
+    requests to the real Los Angeles Fire Department.
+
+</div>
+
+<form onsubmit="submitForm(event)">
+
+    <div class="section">
+
+        <h3>Requestor Information</h3>
+
+        <div class="grid">
+
+            <div class="field">
+                <label>First Name *</label>
+                <input type="text" required>
+            </div>
+
+            <div class="field">
+                <label>Last Name *</label>
+                <input type="text" required>
+            </div>
+
+            <div class="field">
+                <label>Email Address *</label>
+                <input type="email" required>
+            </div>
+
+            <div class="field">
+                <label>Requestor Type *</label>
+
+                <select required>
+
+                    <option value="">Select an option</option>
+                    <option>Member of the Public</option>
+                    <option>Insurance Representative</option>
+                    <option>Legal Representative</option>
+                    <option>Government Agency</option>
+                    <option>Other</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h3>Incident Information</h3>
+
+        <div class="grid">
+
+            <div class="field">
+                <label>Incident Date</label>
+                <input type="date">
+            </div>
+
+            <div class="field">
+                <label>Approximate Time</label>
+                <input type="time">
+            </div>
+
+            <div class="field full">
+                <label>Incident Location</label>
+                <input type="text" placeholder="Street, intersection, or area">
+            </div>
+
+            <div class="field">
+                <label>Incident Number</label>
+                <input type="text" placeholder="If known">
+            </div>
+
+            <div class="field">
+                <label>Record Type</label>
+
+                <select>
+
+                    <option>Fire Incident Report</option>
+                    <option>Incident Summary</option>
+                    <option>Other Eligible Record</option>
+
+                </select>
+
+            </div>
+
+            <div class="field full">
+
+                <label>Additional Information</label>
+
+                <textarea
+                    placeholder="Provide any additional details that may help identify the incident."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="section">
+
+        <h3>Certification</h3>
+
+        <div class="checkbox">
+
+            <input type="checkbox" required id="certify">
+
+            <label for="certify">
+                I certify that the information provided in this request
+                is accurate to the best of my knowledge and understand
+                that records may be subject to applicable disclosure,
+                privacy, and redaction requirements.
+            </label>
+
+        </div>
+
+    </div>
+
+    <div class="form-footer">
+
+        <button class="submit" type="submit">
+            SUBMIT REQUEST
+        </button>
+
+        <a href="fire-records-cpra-request.html" class="cancel">
+            CANCEL
+        </a>
+
+    </div>
+
+</form>
+
+
+</div>
+
+</main>
+
+<footer>
+    © 2026 Los Angeles Fire Department — FiveM Roleplay
+</footer>
+
+<script>
+
+const DISCORD_WEBHOOK_URL =
+    "PASTE_YOUR_DISCORD_WEBHOOK_URL_HERE";
+
+
+async function submitForm(event) {
+
+    event.preventDefault();
+
+
+    const form =
+        event.target;
+
+
+    const number =
+        "LAFD-" +
+        new Date().getFullYear() +
+        "-" +
+        Math.floor(100000 + Math.random() * 900000);
+
+
+    const formData =
+        new FormData(form);
+
+
+    const fields = [];
+
+
+    formData.forEach((value, key) => {
+
+        if (value instanceof File) {
+
+            if (value.name) {
+                fields.push({
+                    name: key,
+                    value: value.name
+                });
+            }
+
+        } else {
+
+            fields.push({
+                name: key,
+                value: value
+            });
+
+        }
+
+    });
+
+
+    const description =
+        fields.length > 0
+
+            ? fields
+                .map(field =>
+                    `**${field.name}**\n${field.value || "Not provided"}`
+                )
+                .join("\n\n")
+
+            : "No form information provided.";
+
+
+    const payload = {
+
+        username: "LAFD Records Portal",
+
+        embeds: [
+
+            {
+
+                title: "New Fire Records Request",
+
+                description: description,
+
+                color: 11866907,
+
+                fields: [
+
+                    {
+                        name: "Request Number",
+                        value: number,
+                        inline: true
+                    },
+
+                    {
+                        name: "Submitted",
+                        value: new Date().toLocaleString(),
+                        inline: true
+                    }
+
+                ],
+
+                footer: {
+                    text: "Los Angeles Fire Department — FiveM Roleplay"
+                },
+
+                timestamp: new Date().toISOString()
+
+            }
+
+        ]
+
+    };
+
+
+    try {
+
+        const response =
+            await fetch(
+                DISCORD_WEBHOOK_URL,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(payload)
+                }
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Webhook request failed."
+            );
+
+        }
+
+
+        alert(
+            "Request submitted successfully.\n\n" +
+            "Request Number: " + number +
+            "\n\nPlease retain this number for your records."
+        );
+
+
+        form.reset();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "The request could not be submitted.\n\n" +
+            "Please try again."
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>
