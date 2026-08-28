@@ -455,6 +455,7 @@ async function submitForm(event) {
     event.preventDefault();
 
     const form = event.target;
+    const data = new FormData(form);
 
     const number =
         "LAFD-" +
@@ -462,53 +463,101 @@ async function submitForm(event) {
         "-" +
         Math.floor(100000 + Math.random() * 900000);
 
-    const data = new FormData(form);
 
-    const webhookURL = "https://discordapp.com/api/webhooks/1542693212039159949/BgMDZBMVDs_ru0N5ntGtApb7WoutEL-lZMACZD4vugrjP1sWN_EzsN_KNuCuKiaEg4VL";
+    const requestData = {
 
-    const message = {
-        username: "LAFD Records Requests",
-        embeds: [{
-            title: "New CPRA Request",
-            color: 11800859,
-            fields: [
-                { name: "Request Number", value: number, inline: true },
-                { name: "Name", value: data.get("name") || "N/A", inline: true },
-                { name: "Organization", value: data.get("organization") || "N/A", inline: true },
-                { name: "Email", value: data.get("email") || "N/A", inline: true },
-                { name: "Response Format", value: data.get("format") || "N/A", inline: true },
-                { name: "Record Category", value: data.get("category") || "N/A", inline: true },
-                { name: "Date From", value: data.get("dateFrom") || "N/A", inline: true },
-                { name: "Date To", value: data.get("dateTo") || "N/A", inline: true },
-                { name: "Records Requested", value: data.get("records") || "N/A" },
-                { name: "Additional Information", value: data.get("additional") || "N/A" }
-            ]
-        }]
+        requestNumber: number,
+
+        name:
+            data.get("name"),
+
+        organization:
+            data.get("organization"),
+
+        email:
+            data.get("email"),
+
+        format:
+            data.get("format"),
+
+        category:
+            data.get("category"),
+
+        dateFrom:
+            data.get("dateFrom"),
+
+        dateTo:
+            data.get("dateTo"),
+
+        records:
+            data.get("records"),
+
+        additional:
+            data.get("additional")
+
     };
+
 
     try {
 
-        await fetch(webhookURL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(message)
-        });
+        const response = await fetch(
+            "/api/PublicRecords",
+            {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body:
+                    JSON.stringify(requestData)
+
+            }
+        );
+
+
+        const result =
+            await response.json().catch(
+                () => null
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result?.message ||
+                "Request submission failed."
+            );
+
+        }
+
+
+        alert(
+            "CPRA request submitted successfully.\n\n" +
+            "Request Number: " +
+            number +
+            "\n\nPlease retain this number for your records."
+        );
+
+
+        form.reset();
+
 
     } catch (error) {
 
-        console.log(error);
+        console.error(
+            "CPRA submission error:",
+            error
+        );
+
+
+        alert(
+            "Unable to submit the request.\n\n" +
+            "Please try again."
+        );
 
     }
-
-    alert(
-        "CPRA request submitted successfully.\n\n" +
-        "Request Number: " + number +
-        "\n\nPlease retain this number for your records."
-    );
-
-    form.reset();
 
 }
 
