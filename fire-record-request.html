@@ -517,18 +517,11 @@
 
 <script>
 
-const DISCORD_WEBHOOK_URL =
-    "https://discordapp.com/api/webhooks/1542693212039159949/BgMDZBMVDs_ru0N5ntGtApb7WoutEL-lZMACZD4vugrjP1sWN_EzsN_KNuCuKiaEg4VL";
-
-
 async function submitForm(event) {
 
     event.preventDefault();
 
-
-    const form =
-        event.target;
-
+    const form = event.target;
 
     const number =
         "LAFD-" +
@@ -541,7 +534,7 @@ async function submitForm(event) {
         new FormData(form);
 
 
-    const fields = [];
+    const formFields = {};
 
 
     formData.forEach((value, key) => {
@@ -549,75 +542,28 @@ async function submitForm(event) {
         if (value instanceof File) {
 
             if (value.name) {
-                fields.push({
-                    name: key,
-                    value: value.name
-                });
+                formFields[key] = value.name;
             }
 
         } else {
 
-            fields.push({
-                name: key,
-                value: value
-            });
+            formFields[key] = value;
 
         }
 
     });
 
 
-    const description =
-        fields.length > 0
+    const requestData = {
 
-            ? fields
-                .map(field =>
-                    `**${field.name}**\n${field.value || "Not provided"}`
-                )
-                .join("\n\n")
+        requestNumber:
+            number,
 
-            : "No form information provided.";
+        fields:
+            formFields,
 
-
-    const payload = {
-
-        username: "LAFD Records Portal",
-
-        embeds: [
-
-            {
-
-                title: "New Fire Records Request",
-
-                description: description,
-
-                color: 11866907,
-
-                fields: [
-
-                    {
-                        name: "Request Number",
-                        value: number,
-                        inline: true
-                    },
-
-                    {
-                        name: "Submitted",
-                        value: new Date().toLocaleString(),
-                        inline: true
-                    }
-
-                ],
-
-                footer: {
-                    text: "Los Angeles Fire Department — FiveM Roleplay"
-                },
-
-                timestamp: new Date().toISOString()
-
-            }
-
-        ]
+        submittedAt:
+            new Date().toISOString()
 
     };
 
@@ -626,23 +572,34 @@ async function submitForm(event) {
 
         const response =
             await fetch(
-                DISCORD_WEBHOOK_URL,
+                "/api/PublicRecords",
                 {
+
                     method: "POST",
 
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type":
+                            "application/json"
                     },
 
-                    body: JSON.stringify(payload)
+                    body:
+                        JSON.stringify(requestData)
+
                 }
             );
+
+
+        const result =
+            await response
+                .json()
+                .catch(() => null);
 
 
         if (!response.ok) {
 
             throw new Error(
-                "Webhook request failed."
+                result?.message ||
+                "Request submission failed."
             );
 
         }
@@ -650,7 +607,8 @@ async function submitForm(event) {
 
         alert(
             "Request submitted successfully.\n\n" +
-            "Request Number: " + number +
+            "Request Number: " +
+            number +
             "\n\nPlease retain this number for your records."
         );
 
@@ -660,7 +618,11 @@ async function submitForm(event) {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Public Records submission error:",
+            error
+        );
+
 
         alert(
             "The request could not be submitted.\n\n" +
@@ -672,6 +634,7 @@ async function submitForm(event) {
 }
 
 </script>
+
 
 </body>
 
