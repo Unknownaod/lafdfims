@@ -802,10 +802,7 @@ async function submitForm(event) {
 
     event.preventDefault();
 
-
-    const form =
-        event.target;
-
+    const form = event.target;
 
     const number =
         "LAFD-" +
@@ -821,190 +818,123 @@ async function submitForm(event) {
         new FormData(form);
 
 
-    const webhookURL =
-        "https://discordapp.com/api/webhooks/1542693212039159949/BgMDZBMVDs_ru0N5ntGtApb7WoutEL-lZMACZD4vugrjP1sWN_EzsN_KNuCuKiaEg4VL";
+    const requestData = {
 
+        requestNumber:
+            number,
 
-    const message = {
+        name:
+            data.get("name"),
 
-        username:
-            "LAFD Records Requests",
+        organization:
+            data.get("organization"),
 
-        embeds: [
+        email:
+            data.get("email"),
 
-            {
+        responseMethod:
+            data.get("responseMethod"),
 
-                title:
-                    "New General Records Request",
+        recordType:
+            data.get("recordType"),
 
-                color:
-                    11800859,
+        incidentDate:
+            data.get("incidentDate"),
 
-                fields: [
+        incidentNumber:
+            data.get("incidentNumber"),
 
-                    {
-                        name:
-                            "Request Number",
+        records:
+            data.get("records"),
 
-                        value:
-                            number,
+        additional:
+            data.get("additional"),
 
-                        inline:
-                            true
-                    },
-
-                    {
-                        name:
-                            "Name",
-
-                        value:
-                            data.get("name") || "N/A",
-
-                        inline:
-                            true
-                    },
-
-                    {
-                        name:
-                            "Organization",
-
-                        value:
-                            data.get("organization") || "N/A",
-
-                        inline:
-                            true
-                    },
-
-                    {
-                        name:
-                            "Email",
-
-                        value:
-                            data.get("email") || "N/A",
-
-                        inline:
-                            true
-                    },
-
-                    {
-                        name:
-                            "Response Method",
-
-                        value:
-                            data.get("responseMethod") || "N/A",
-
-                        inline:
-                            true
-                    },
-
-                    {
-                        name:
-                            "Record Type",
-
-                        value:
-                            data.get("recordType") || "N/A",
-
-                        inline:
-                            true
-                    },
-
-                    {
-                        name:
-                            "Incident / Event Date",
-
-                        value:
-                            data.get("incidentDate") || "N/A",
-
-                        inline:
-                            true
-                    },
-
-                    {
-                        name:
-                            "Incident / Event Number",
-
-                        value:
-                            data.get("incidentNumber") || "N/A",
-
-                        inline:
-                            true
-                    },
-
-                    {
-                        name:
-                            "Records Requested",
-
-                        value:
-                            data.get("records") || "N/A"
-                    },
-
-                    {
-                        name:
-                            "Additional Information",
-
-                        value:
-                            data.get("additional") || "N/A"
-                    }
-
-                ]
-
-            }
-
-        ]
+        submittedAt:
+            new Date().toISOString()
 
     };
 
 
     try {
 
-        await fetch(
-            webhookURL,
-            {
+        const response =
+            await fetch(
+                "/api/PublicRecords",
+                {
 
-                method:
-                    "POST",
+                    method:
+                        "POST",
 
-                headers:
-                    {
-                        "Content-Type":
-                            "application/json"
-                    },
+                    headers:
+                        {
+                            "Content-Type":
+                                "application/json"
+                        },
 
-                body:
-                    JSON.stringify(message)
+                    body:
+                        JSON.stringify(
+                            requestData
+                        )
 
-            }
+                }
+            );
+
+
+        const result =
+            await response
+                .json()
+                .catch(() => null);
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result?.message ||
+                "Records request submission failed."
+            );
+
+        }
+
+
+        alert(
+
+            "Records request submitted successfully.\n\n" +
+
+            "Request Number: " +
+            number +
+
+            "\n\nPlease retain this number for your records."
+
         );
+
+
+        form.reset();
+
 
     }
 
     catch (error) {
 
-        console.log(
-            "Webhook error:",
+        console.error(
+            "Records request error:",
             error
+        );
+
+
+        alert(
+
+            "The records request could not be submitted.\n\n" +
+            "Please try again."
+
         );
 
     }
 
-
-    alert(
-
-        "Records request submitted successfully.\n\n" +
-
-        "Request Number: " +
-        number +
-
-        "\n\nPlease retain this number for your records."
-
-    );
-
-
-    form.reset();
-
 }
 
 </script>
+
 
 </body>
 
