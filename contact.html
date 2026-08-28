@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Contact | FIMS | Los Angeles Fire Department</title>
+
+<link rel="icon" type="image/png" href="./lafd-logo.png">
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        background: #f5f5f5;
+        color: #222;
+    }
+
+    .city-bar {
+        min-height: 38px;
+        background: #eeeeee;
+        border-bottom: 1px solid #d5d5d5;
+        display: flex;
+        align-items: center;
+        padding: 0 55px;
+        font-size: 12px;
+        color: #444;
+    }
+
+    .city-bar img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+        margin-right: 9px;
+    }
+
+    .city-bar span {
+        font-weight: 600;
+    }
+
+    header {
+        min-height: 82px;
+        background: #b5121b;
+        display: flex;
+        align-items: center;
+        padding: 0 55px;
+        color: white;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .lafd-logo {
+        width: 54px;
+        height: 54px;
+        object-fit: contain;
+        background: white;
+        border-radius: 50%;
+        padding: 3px;
+    }
+
+    .city-logo {
+        width: 47px;
+        height: 47px;
+        object-fit: contain;
+    }
+
+    .logo-divider {
+        width: 1px;
+        height: 44px;
+        background: rgba(255,255,255,.45);
+    }
+
+    .brand-text h1 {
+        font-size: 19px;
+    }
+
+    .brand-text p {
+        font-size: 11px;
+        margin-top: 3px;
+        color: #eee;
+    }
+
+    nav {
+        margin-left: auto;
+        display: flex;
+        gap: 27px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    .page-header {
+        background:
+            linear-gradient(
+                rgba(0,0,0,.72),
+                rgba(0,0,0,.72)
+            ),
+            url("https://media.discordapp.net/attachments/1394469502061772811/1397741145932697630/Screenshot_2025-07-23_193808.png")
+            center/cover;
+
+        min-height: 240px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+
+        color: white;
+    }
+
+    .page-header h2 {
+        font-size: 38px;
+        margin-bottom: 9px;
+    }
+
+    .page-header p {
+        color: #ddd;
+        font-size: 14px;
+    }
+
+    .container {
+        max-width: 1050px;
+        margin: auto;
+        padding: 40px 25px 70px;
+    }
+
+    .content {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 32px;
+    }
+
+    .content h2 {
+        font-size: 25px;
+        margin-bottom: 10px;
+    }
+
+    .red-line {
+        width: 52px;
+        height: 4px;
+        background: #b5121b;
+        margin-bottom: 22px;
+    }
+
+    .content p {
+        color: #555;
+        font-size: 13px;
+        line-height: 1.8;
+        margin-bottom: 19px;
+    }
+
+    .content h3 {
+        font-size: 18px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #b5121b;
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .contact-card {
+        background: #f8f8f8;
+        border: 1px solid #ddd;
+        padding: 22px;
+    }
+
+    .contact-card h4 {
+        font-size: 14px;
+        margin-bottom: 9px;
+    }
+
+    .contact-card p {
+        font-size: 12px;
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    .notice {
+        margin-top: 25px;
+        background: #fff8e5;
+        border: 1px solid #ead9a5;
+        border-left: 5px solid #d59b00;
+        padding: 17px;
+        color: #665522;
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .button {
+        display: inline-block;
+        margin-top: 25px;
+        margin-right: 8px;
+        background: #b5121b;
+        color: white;
+        text-decoration: none;
+        padding: 13px 21px;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .button:hover {
+        background: #951019;
+    }
+
+    footer {
+        background: #111;
+        color: #999;
+        text-align: center;
+        padding: 27px;
+        font-size: 11px;
+    }
+
+    footer strong {
+        color: #ddd;
+    }
+
+    @media(max-width:750px) {
+
+        .city-bar {
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 15px 20px;
+        }
+
+        nav {
+            display: none;
+        }
+
+        .page-header h2 {
+            font-size: 30px;
+        }
+
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .content {
+            padding: 23px;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="city-bar">
+
+
+<img
+    src="la-city-logo.png"
+    alt="City of Los Angeles"
+>
+
+<span>
+    An official website of the City of Los Angeles
+</span>
+
+
+</div>
+
+<header>
+
+
+<div class="brand">
+
+    <img
+        src="lafd-logo.png"
+        class="lafd-logo"
+        alt="Los Angeles Fire Department"
+    >
+
+    <div class="logo-divider"></div>
+
+    <img
+        src="la-city-logo.png"
+        class="city-logo"
+        alt="City of Los Angeles"
+    >
+
+    <div class="brand-text">
+
+        <h1>
+            Los Angeles Fire Department
+        </h1>
+
+        <p>
+            Fire Inspection Management System
+        </p>
+
+    </div>
+
+</div>
+
+
+<nav>
+
+    <a href="index.html">
+        FIMS Home
+    </a>
+
+    <a href="applications.html">
+        Applications
+    </a>
+
+    <a href="inspections.html">
+        Inspections
+    </a>
+
+    <a href="development.html">
+        Development
+    </a>
+
+    <a href="fire-code.html">
+        Fire Code
+    </a>
+
+    <a href="contact.html">
+        Contact
+    </a>
+
+</nav>
+
+
+</header>
+
+<section class="page-header">
+
+
+<div>
+
+    <h2>
+        Contact
+    </h2>
+
+    <p>
+        Fire Inspection Management System contact information
+    </p>
+
+</div>
+
+
+</section>
+
+<main class="container">
+
+
+<div class="content">
+
+    <h2>
+        Contact FIMS
+    </h2>
+
+    <div class="red-line"></div>
+
+
+    <p>
+
+        For questions regarding applications, inspections,
+        development services, fire prevention information, or
+        other FIMS-related matters, please use the official
+        contact page.
+
+    </p>
+
+
+    <h3>
+        Contact Categories
+    </h3>
+
+
+    <div class="contact-grid">
+
+        <div class="contact-card">
+
+            <h4>
+                Fire Prevention
+            </h4>
+
+            <p>
+                Questions regarding fire prevention services,
+                inspections, fire protection requirements, and
+                related information.
+            </p>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <h4>
+                Development Services
+            </h4>
+
+            <p>
+                Questions regarding development projects,
+                plan review, fire access, and construction-related
+                requirements.
+            </p>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <h4>
+                Applications
+            </h4>
+
+            <p>
+                Questions regarding applications submitted through
+                the Fire Inspection Management System.
+            </p>
+
+        </div>
+
+
+        <div class="contact-card">
+
+            <h4>
+                General Information
+            </h4>
+
+            <p>
+                For general questions or information that does not
+                fall under one of the categories listed above.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="notice">
+
+        <strong>
+            Emergency Notice
+        </strong>
+
+        FIMS is not an emergency reporting system. For emergencies,
+        contact the appropriate emergency services through the
+        designated emergency number.
+
+    </div>
+
+
+    <h3>
+        Official Contact Page
+    </h3>
+
+
+    <p>
+
+        For complete contact information and additional ways to
+        reach the department, visit the official FIMS contact page.
+
+    </p>
+
+
+    <a
+        href="https://lafdi10.org/contact.html"
+        class="button"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        OPEN CONTACT PAGE
+    </a>
+
+
+    <a
+        href="index.html"
+        class="button"
+    >
+        RETURN TO FIMS HOME
+    </a>
+
+</div>
+
+
+</main>
+
+<footer>
+
+
+<strong>
+    Los Angeles Fire Department
+</strong>
+
+<br><br>
+
+Fire Inspection Management System
+
+<br>
+
+© 2026 Los Angeles Fire Department — FiveM Roleplay
+
+
+</footer>
+
+</body>
+
+</html>
