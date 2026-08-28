@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Fire Code | FIMS | Los Angeles Fire Department</title>
+
+<link
+    rel="icon"
+    type="image/png"
+    href="./lafd-logo.png"
+>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        background: #f5f5f5;
+        color: #222;
+    }
+
+    /* ================================
+       CITY BAR
+    ================================= */
+
+    .city-bar {
+
+        min-height: 38px;
+
+        background: #eeeeee;
+
+        border-bottom: 1px solid #d5d5d5;
+
+        display: flex;
+
+        align-items: center;
+
+        padding: 0 55px;
+
+        font-size: 12px;
+
+        color: #444;
+
+    }
+
+    .city-bar img {
+
+        width: 22px;
+
+        height: 22px;
+
+        object-fit: contain;
+
+        margin-right: 9px;
+
+    }
+
+    .city-bar span {
+
+        font-weight: 600;
+
+    }
+
+    /* ================================
+       HEADER
+    ================================= */
+
+    header {
+
+        min-height: 82px;
+
+        background: #b5121b;
+
+        display: flex;
+
+        align-items: center;
+
+        padding: 0 55px;
+
+        color: white;
+
+    }
+
+    .brand {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 15px;
+
+    }
+
+    .lafd-logo {
+
+        width: 54px;
+
+        height: 54px;
+
+        object-fit: contain;
+
+        background: white;
+
+        border-radius: 50%;
+
+        padding: 3px;
+
+    }
+
+    .city-logo {
+
+        width: 47px;
+
+        height: 47px;
+
+        object-fit: contain;
+
+    }
+
+    .logo-divider {
+
+        width: 1px;
+
+        height: 44px;
+
+        background: rgba(255,255,255,.45);
+
+    }
+
+    .brand-text h1 {
+
+        font-size: 19px;
+
+    }
+
+    .brand-text p {
+
+        font-size: 11px;
+
+        margin-top: 3px;
+
+        color: #eee;
+
+    }
+
+    nav {
+
+        margin-left: auto;
+
+        display: flex;
+
+        gap: 27px;
+
+    }
+
+    nav a {
+
+        color: white;
+
+        text-decoration: none;
+
+        font-size: 13px;
+
+        font-weight: 600;
+
+    }
+
+    nav a:hover {
+
+        text-decoration: underline;
+
+    }
+
+    /* ================================
+       PAGE HEADER
+    ================================= */
+
+    .page-header {
+
+        background:
+
+            linear-gradient(
+                rgba(0,0,0,.72),
+                rgba(0,0,0,.72)
+            ),
+
+            url("https://media.discordapp.net/attachments/1394469502061772811/1397741145932697630/Screenshot_2025-07-23_193808.png")
+            center/cover;
+
+        min-height: 240px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        text-align: center;
+
+        color: white;
+
+    }
+
+    .page-header h2 {
+
+        font-size: 38px;
+
+        margin-bottom: 9px;
+
+    }
+
+    .page-header p {
+
+        color: #ddd;
+
+        font-size: 14px;
+
+    }
+
+    /* ================================
+       MAIN
+    ================================= */
+
+    .container {
+
+        max-width: 1050px;
+
+        margin: auto;
+
+        padding: 40px 25px 70px;
+
+    }
+
+    .content {
+
+        background: white;
+
+        border: 1px solid #ddd;
+
+        padding: 32px;
+
+    }
+
+    .content h2 {
+
+        font-size: 25px;
+
+        margin-bottom: 10px;
+
+    }
+
+    .red-line {
+
+        width: 52px;
+
+        height: 4px;
+
+        background: #b5121b;
+
+        margin-bottom: 22px;
+
+    }
+
+    .content p {
+
+        color: #555;
+
+        font-size: 13px;
+
+        line-height: 1.8;
+
+        margin-bottom: 19px;
+
+    }
+
+    .content h3 {
+
+        font-size: 18px;
+
+        margin-top: 30px;
+
+        margin-bottom: 15px;
+
+        padding-bottom: 8px;
+
+        border-bottom: 2px solid #b5121b;
+
+    }
+
+    /* ================================
+       CODE CARDS
+    ================================= */
+
+    .code-grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 15px;
+
+        margin-top: 20px;
+
+    }
+
+    .code-card {
+
+        background: #f8f8f8;
+
+        border: 1px solid #ddd;
+
+        padding: 21px;
+
+    }
+
+    .code-card h4 {
+
+        font-size: 14px;
+
+        margin-bottom: 9px;
+
+    }
+
+    .code-card p {
+
+        font-size: 12px;
+
+        line-height: 1.7;
+
+        margin: 0;
+
+    }
+
+    /* ================================
+       NOTICE
+    ================================= */
+
+    .notice {
+
+        margin-top: 25px;
+
+        background: #fff8e5;
+
+        border: 1px solid #ead9a5;
+
+        border-left: 5px solid #d59b00;
+
+        padding: 17px;
+
+        color: #665522;
+
+        font-size: 12px;
+
+        line-height: 1.6;
+
+    }
+
+    .notice strong {
+
+        display: block;
+
+        margin-bottom: 5px;
+
+        color: #554400;
+
+    }
+
+    /* ================================
+       BUTTONS
+    ================================= */
+
+    .button {
+
+        display: inline-block;
+
+        margin-top: 25px;
+
+        margin-right: 8px;
+
+        background: #b5121b;
+
+        color: white;
+
+        text-decoration: none;
+
+        padding: 13px 21px;
+
+        font-size: 11px;
+
+        font-weight: bold;
+
+    }
+
+    .button:hover {
+
+        background: #951019;
+
+    }
+
+    /* ================================
+       FOOTER
+    ================================= */
+
+    footer {
+
+        background: #111;
+
+        color: #999;
+
+        text-align: center;
+
+        padding: 27px;
+
+        font-size: 11px;
+
+    }
+
+    footer strong {
+
+        color: #ddd;
+
+    }
+
+    /* ================================
+       MOBILE
+    ================================= */
+
+    @media(max-width:750px) {
+
+        .city-bar {
+
+            padding: 0 20px;
+
+        }
+
+        header {
+
+            padding: 15px 20px;
+
+        }
+
+        nav {
+
+            display: none;
+
+        }
+
+        .page-header h2 {
+
+            font-size: 30px;
+
+        }
+
+        .code-grid {
+
+            grid-template-columns: 1fr;
+
+        }
+
+        .content {
+
+            padding: 23px;
+
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<!-- ================================
+     CITY BAR
+================================= -->
+
+<div class="city-bar">
+
+
+<img
+    src="la-city-logo.png"
+    alt="City of Los Angeles"
+>
+
+<span>
+    An official website of the City of Los Angeles
+</span>
+
+
+</div>
+
+<!-- ================================
+     HEADER
+================================= -->
+
+<header>
+
+
+<div class="brand">
+
+    <img
+        src="lafd-logo.png"
+        class="lafd-logo"
+        alt="Los Angeles Fire Department"
+    >
+
+    <div class="logo-divider"></div>
+
+    <img
+        src="la-city-logo.png"
+        class="city-logo"
+        alt="City of Los Angeles"
+    >
+
+    <div class="brand-text">
+
+        <h1>
+            Los Angeles Fire Department
+        </h1>
+
+        <p>
+            Fire Inspection Management System
+        </p>
+
+    </div>
+
+</div>
+
+
+<nav>
+
+    <a href="index.html">
+        FIMS Home
+    </a>
+
+    <a href="applications.html">
+        Applications
+    </a>
+
+    <a href="inspections.html">
+        Inspections
+    </a>
+
+    <a href="development.html">
+        Development
+    </a>
+
+    <a href="fire-code.html">
+        Fire Code
+    </a>
+
+    <a href="contact.html">
+        Contact
+    </a>
+
+</nav>
+
+
+</header>
+
+<!-- ================================
+     PAGE HEADER
+================================= -->
+
+<section class="page-header">
+
+
+<div>
+
+    <h2>
+        Fire Code
+    </h2>
+
+    <p>
+        Fire and life safety codes, regulations, and requirements
+    </p>
+
+</div>
+
+
+</section>
+
+<!-- ================================
+     MAIN
+================================= -->
+
+<main class="container">
+
+
+<div class="content">
+
+    <h2>
+        Los Angeles Fire Code
+    </h2>
+
+    <div class="red-line"></div>
+
+
+    <p>
+
+        The fire code establishes requirements intended to protect
+        life and property from fire and other hazards. Requirements
+        may apply to buildings, businesses, construction projects,
+        special events, fire protection systems, and other activities.
+
+    </p>
+
+
+    <p>
+
+        The information provided through FIMS is intended to help
+        users locate relevant fire prevention and fire safety
+        resources.
+
+    </p>
+
+
+    <h3>
+        Fire Code Resources
+    </h3>
+
+
+    <div class="code-grid">
+
+        <div class="code-card">
+
+            <h4>
+                Fire Prevention
+            </h4>
+
+            <p>
+                Requirements relating to fire prevention, inspection,
+                and life safety.
+            </p>
+
+        </div>
+
+
+        <div class="code-card">
+
+            <h4>
+                Building Requirements
+            </h4>
+
+            <p>
+                Fire and life safety requirements that may apply to
+                buildings and other structures.
+            </p>
+
+        </div>
+
+
+        <div class="code-card">
+
+            <h4>
+                Fire Protection Systems
+            </h4>
+
+            <p>
+                Requirements involving fire alarms, sprinkler systems,
+                extinguishers, standpipes, and other fire protection
+                equipment.
+            </p>
+
+        </div>
+
+
+        <div class="code-card">
+
+            <h4>
+                Special Events
+            </h4>
+
+            <p>
+                Fire safety considerations and requirements that may
+                apply to public gatherings and temporary events.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <h3>
+        California Fire Code
+    </h3>
+
+
+    <p>
+
+        The California Fire Code contains statewide fire and life
+        safety provisions. Local jurisdictions may adopt amendments
+        and additional requirements applicable to their area.
+
+    </p>
+
+
+    <h3>
+        Los Angeles Fire Code
+    </h3>
+
+
+    <p>
+
+        For the complete fire code information used by this FIMS
+        website, visit the main Fire Code resource page.
+
+    </p>
+
+
+    <div class="notice">
+
+        <strong>
+            Important Information
+        </strong>
+
+        Fire code requirements can change and may depend on the
+        type of property, occupancy, project, or activity. Always
+        review the applicable requirements before beginning work
+        or submitting an application.
+
+    </div>
+
+
+    <a
+        href="https://lafdi10.org/fire-code.html"
+        class="button"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        OPEN MAIN FIRE CODE
+    </a>
+
+
+    <a
+        href="https://up.codes/viewer/los-angeles-county/ca-fire-code-2022/chapter/1/scope-and-administration#1"
+        class="button"
+        target="_blank"
+        rel="noopener noreferrer"
+    >
+        VIEW CALIFORNIA FIRE CODE
+    </a>
+
+
+    <a
+        href="index.html"
+        class="button"
+    >
+        RETURN TO FIMS HOME
+    </a>
+
+</div>
+
+
+</main>
+
+<!-- ================================
+     FOOTER
+================================= -->
+
+<footer>
+
+
+<strong>
+    Los Angeles Fire Department
+</strong>
+
+<br><br>
+
+Fire Inspection Management System
+
+<br>
+
+© 2026 Los Angeles Fire Department — FiveM Roleplay
+
+
+</footer>
+
+</body>
+
+</html>
