@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<title>Applications | FIMS | Los Angeles Fire Department</title>
+
+<link rel="icon" type="image/png" href="./lafd-logo.png">
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        background: #f5f5f5;
+        color: #222;
+    }
+
+    .city-bar {
+        min-height: 38px;
+        background: #eeeeee;
+        border-bottom: 1px solid #d5d5d5;
+        display: flex;
+        align-items: center;
+        padding: 0 55px;
+        font-size: 12px;
+        color: #444;
+    }
+
+    .city-bar img {
+        width: 22px;
+        height: 22px;
+        object-fit: contain;
+        margin-right: 9px;
+    }
+
+    .city-bar span {
+        font-weight: 600;
+    }
+
+    header {
+        min-height: 82px;
+        background: #b5121b;
+        display: flex;
+        align-items: center;
+        padding: 0 55px;
+        color: white;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .lafd-logo {
+        width: 54px;
+        height: 54px;
+        object-fit: contain;
+        background: white;
+        border-radius: 50%;
+        padding: 3px;
+    }
+
+    .city-logo {
+        width: 47px;
+        height: 47px;
+        object-fit: contain;
+    }
+
+    .logo-divider {
+        width: 1px;
+        height: 44px;
+        background: rgba(255,255,255,.45);
+    }
+
+    .brand-text h1 {
+        font-size: 19px;
+    }
+
+    .brand-text p {
+        margin-top: 3px;
+        font-size: 11px;
+        color: #eee;
+    }
+
+    nav {
+        margin-left: auto;
+        display: flex;
+        gap: 27px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    .page-header {
+        background: #222;
+        color: white;
+        padding: 30px 55px;
+    }
+
+    .page-header-inner {
+        max-width: 1100px;
+        margin: auto;
+    }
+
+    .page-header h2 {
+        font-size: 27px;
+    }
+
+    .page-header p {
+        color: #ccc;
+        font-size: 12px;
+        margin-top: 6px;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 35px 25px 70px;
+    }
+
+    .intro {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 27px;
+        margin-bottom: 25px;
+    }
+
+    .intro h2 {
+        font-size: 22px;
+        margin-bottom: 8px;
+    }
+
+    .red-line {
+        width: 50px;
+        height: 4px;
+        background: #b5121b;
+        margin-bottom: 15px;
+    }
+
+    .intro p {
+        color: #555;
+        font-size: 13px;
+        line-height: 1.8;
+    }
+
+    .application-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .application-card {
+        background: white;
+        border: 1px solid #ddd;
+        padding: 25px;
+        text-decoration: none;
+        color: #222;
+        transition: .15s;
+    }
+
+    .application-card:hover {
+        border-color: #b5121b;
+        transform: translateY(-2px);
+    }
+
+    .number {
+        display: inline-flex;
+        width: 40px;
+        height: 40px;
+        background: #b5121b;
+        color: white;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 13px;
+        margin-bottom: 15px;
+    }
+
+    .application-card h3 {
+        font-size: 16px;
+        margin-bottom: 8px;
+    }
+
+    .application-card p {
+        color: #666;
+        font-size: 12px;
+        line-height: 1.7;
+    }
+
+    .apply {
+        display: inline-block;
+        margin-top: 17px;
+        background: #b5121b;
+        color: white;
+        padding: 10px 15px;
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+    footer {
+        background: #111;
+        color: #999;
+        text-align: center;
+        padding: 27px;
+        font-size: 11px;
+    }
+
+    footer strong {
+        color: #ddd;
+    }
+
+    @media(max-width: 750px) {
+
+        .city-bar {
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 15px 20px;
+        }
+
+        nav {
+            display: none;
+        }
+
+        .page-header {
+            padding: 25px 20px;
+        }
+
+        .application-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<div class="city-bar">
+
+
+<img src="la-city-logo.png" alt="City of Los Angeles">
+
+<span>
+    An official website of the City of Los Angeles
+</span>
+
+
+</div>
+
+<header>
+
+
+<div class="brand">
+
+    <img src="lafd-logo.png" class="lafd-logo" alt="LAFD">
+
+    <div class="logo-divider"></div>
+
+    <img src="la-city-logo.png" class="city-logo" alt="City of Los Angeles">
+
+    <div class="brand-text">
+
+        <h1>Los Angeles Fire Department</h1>
+
+        <p>City of Los Angeles</p>
+
+    </div>
+
+</div>
+
+<nav>
+    <a href="index.html">FIMS Home</a>
+    <a href="applications.html">Applications</a>
+    <a href="inspections.html">Inspections</a>
+    <a href="fire-code.html">Fire Code</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+
+</header>
+
+<section class="page-header">
+
+
+<div class="page-header-inner">
+
+    <h2>Fire Prevention Applications</h2>
+
+    <p>
+        Los Angeles Fire Department Fire Prevention Services
+    </p>
+
+</div>
+
+
+</section>
+
+<main class="container">
+
+
+<div class="intro">
+
+    <h2>Applications</h2>
+
+    <div class="red-line"></div>
+
+    <p>
+        Select the appropriate application below. Please provide
+        complete and accurate information when submitting an
+        application to the Los Angeles Fire Department.
+    </p>
+
+</div>
+
+<div class="application-grid">
+
+    <a href="fire-inspection-application.html" class="application-card">
+
+        <span class="number">01</span>
+
+        <h3>Fire Inspection Request</h3>
+
+        <p>
+            Request a Fire Department inspection for a property,
+            business, facility, or other location.
+        </p>
+
+        <span class="apply">START APPLICATION →</span>
+
+    </a>
+
+    <a href="special-event-application.html" class="application-card">
+
+        <span class="number">02</span>
+
+        <h3>Special Event Application</h3>
+
+        <p>
+            Submit an application for a special event requiring
+            Fire Department review or attendance.
+        </p>
+
+        <span class="apply">START APPLICATION →</span>
+
+    </a>
+
+    <a href="tent-application.html" class="application-card">
+
+        <span class="number">03</span>
+
+        <h3>Tent / Canopy Application</h3>
+
+        <p>
+            Submit information regarding tents, canopies,
+            temporary structures, and related fire safety
+            requirements.
+        </p>
+
+        <span class="apply">START APPLICATION →</span>
+
+    </a>
+
+    <a href="fire-protection-application.html" class="application-card">
+
+        <span class="number">04</span>
+
+        <h3>Fire Protection System Application</h3>
+
+        <p>
+            Submit a request relating to fire protection
+            systems, equipment, testing, or inspection.
+        </p>
+
+        <span class="apply">START APPLICATION →</span>
+
+    </a>
+
+</div>
+
+
+</main>
+
+<footer>
+
+
+<strong>Los Angeles Fire Department</strong>
+
+<br><br>
+
+Fire Inspection Management System
+
+<br>
+
+© 2026 Los Angeles Fire Department — FiveM Roleplay
+
+
+</footer>
+
+</body>
+</html>
