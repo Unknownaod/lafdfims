@@ -710,7 +710,6 @@ async function submitForm(event) {
     event.preventDefault();
 
     const form = event.target;
-
     const formData = new FormData(form);
 
     const number =
@@ -719,91 +718,36 @@ async function submitForm(event) {
         "-" +
         Math.floor(100000 + Math.random() * 900000);
 
+    const requestData = {
 
-    const webhook =
-        "https://discordapp.com/api/webhooks/1542693212039159949/BgMDZBMVDs_ru0N5ntGtApb7WoutEL-lZMACZD4vugrjP1sWN_EzsN_KNuCuKiaEg4VL";
+        requestNumber: number,
 
+        firstName:
+            formData.get("firstName"),
 
-    const embed = {
+        lastName:
+            formData.get("lastName"),
 
-        title: "🔥 New Arson Investigation Report Request",
+        requestorType:
+            formData.get("requestorType"),
 
-        color: 11801115,
+        email:
+            formData.get("email"),
 
-        fields: [
+        incidentNumber:
+            formData.get("incidentNumber"),
 
-            {
-                name: "Request Number",
-                value: number,
-                inline: true
-            },
+        incidentDate:
+            formData.get("incidentDate"),
 
-            {
-                name: "Requestor",
-                value:
-                    formData.get("firstName") +
-                    " " +
-                    formData.get("lastName"),
-                inline: true
-            },
+        location:
+            formData.get("location"),
 
-            {
-                name: "Requestor Type",
-                value:
-                    formData.get("requestorType") || "Not provided",
-                inline: true
-            },
+        description:
+            formData.get("description"),
 
-            {
-                name: "Email",
-                value:
-                    formData.get("email") || "Not provided",
-                inline: false
-            },
-
-            {
-                name: "Incident / Investigation Number",
-                value:
-                    formData.get("incidentNumber") || "Not provided",
-                inline: true
-            },
-
-            {
-                name: "Incident Date",
-                value:
-                    formData.get("incidentDate") || "Not provided",
-                inline: true
-            },
-
-            {
-                name: "Location",
-                value:
-                    formData.get("location") || "Not provided",
-                inline: false
-            },
-
-            {
-                name: "Description",
-                value:
-                    formData.get("description") || "Not provided",
-                inline: false
-            },
-
-            {
-                name: "Purpose",
-                value:
-                    formData.get("purpose") || "Not provided",
-                inline: false
-            }
-
-        ],
-
-        footer: {
-            text: "LAFD FiveM Roleplay • Arson Records Request"
-        },
-
-        timestamp:
-            new Date().toISOString()
+        purpose:
+            formData.get("purpose")
 
     };
 
@@ -811,26 +755,33 @@ async function submitForm(event) {
     try {
 
         const response = await fetch(
-            webhook,
+            "/api/PublicRecords",
             {
+
                 method: "POST",
 
                 headers: {
                     "Content-Type": "application/json"
                 },
 
-                body: JSON.stringify({
-                    username: "LAFD Records Portal",
-                    embeds: [embed]
-                })
+                body:
+                    JSON.stringify(requestData)
+
             }
         );
+
+
+        const result =
+            await response.json().catch(
+                () => null
+            );
 
 
         if (!response.ok) {
 
             throw new Error(
-                "Webhook submission failed"
+                result?.message ||
+                "Request submission failed."
             );
 
         }
@@ -850,7 +801,11 @@ async function submitForm(event) {
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "Public records submission error:",
+            error
+        );
+
 
         alert(
             "Unable to submit the request.\n\n" +
@@ -862,6 +817,7 @@ async function submitForm(event) {
 }
 
 </script>
+
 
 
 </body>
