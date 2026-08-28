@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Arson Investigation Report Request | Los Angeles Fire Department</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        .city-bar {
+            background: #eeeeee;
+            border-bottom: 1px solid #d5d5d5;
+            min-height: 38px;
+            display: flex;
+            align-items: center;
+            padding: 0 55px;
+            font-size: 12px;
+            color: #444;
+        }
+
+        .city-bar span {
+            font-weight: 600;
+        }
+
+        header {
+            background: #b5121b;
+            min-height: 82px;
+            display: flex;
+            align-items: center;
+            padding: 0 55px;
+            color: white;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lafd-logo {
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+            background: white;
+            border-radius: 50%;
+            padding: 3px;
+        }
+
+        .brand-text h1 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .brand-text p {
+            font-size: 11px;
+            color: #eee;
+            margin-top: 3px;
+        }
+
+        nav {
+            margin-left: auto;
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .hero {
+            background:
+                linear-gradient(
+                    rgba(0,0,0,.65),
+                    rgba(0,0,0,.65)
+                ),
+                url("https://media.discordapp.net/attachments/1394469502061772811/1397741145932697630/Screenshot_2025-07-23_193808.png?ex=6a9182a1&is=6a903121&hm=caf47823a2dc8854e047d875ce7096889dc503df09235f35c02ccd2ee73e9ba2&=&format=webp&quality=lossless")
+                center/cover;
+
+            min-height: 240px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #ddd;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 45px 25px 70px;
+        }
+
+        .form-card {
+            background: white;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        }
+
+        .form-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .form-header h2 {
+            font-size: 25px;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .notice {
+            margin: 25px 30px 0;
+            background: #fff8e5;
+            border: 1px solid #ead9a5;
+            padding: 17px 20px;
+            color: #665522;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        form {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section h3 {
+            font-size: 17px;
+            padding-bottom: 10px;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #b5121b;
+        }
+
+        .field {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        .required {
+            color: #b5121b;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #ccc;
+            padding: 12px;
+            font-size: 13px;
+            outline: none;
+            background: white;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #b5121b;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .checkbox input {
+            width: auto;
+            margin-top: 2px;
+        }
+
+        .checkbox label {
+            font-weight: normal;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .submit-area {
+            border-top: 1px solid #ddd;
+            padding-top: 25px;
+            text-align: right;
+        }
+
+        .submit-button {
+            background: #b5121b;
+            color: white;
+            border: none;
+            padding: 13px 24px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background: #951019;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-right: 10px;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            padding: 13px 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #111;
+            color: #aaa;
+            text-align: center;
+            padding: 28px;
+            font-size: 12px;
+        }
+
+        @media (max-width: 750px) {
+
+            .city-bar {
+                padding: 0 20px;
+            }
+
+            header {
+                padding: 15px 20px;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h2 {
+                font-size: 30px;
+            }
+
+            .form-header,
+            form {
+                padding: 22px;
+            }
+
+            .notice {
+                margin-left: 22px;
+                margin-right: 22px;
+            }
+
+            .submit-area {
+                text-align: left;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="city-bar">
+
+    <span>
+        An official website of the City of Los Angeles
+    </span>
+
+</div>
+
+
+<header>
+
+    <div class="brand">
+
+        <img
+            src="lafd-logo.png"
+            alt="Los Angeles Fire Department"
+            class="lafd-logo"
+        >
+
+        <div class="brand-text">
+
+            <h1>
+                Los Angeles Fire Department
+            </h1>
+
+            <p>
+                City of Los Angeles
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+        <a href="stations.html">
+            Stations
+        </a>
+
+        <a href="careers.html">
+            Careers
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+    </nav>
+
+</header>
+
+
+<section class="hero">
+
+    <div>
+
+        <h2>
+            Arson Investigation Report
+        </h2>
+
+        <p>
+            Request an eligible closed arson investigation report.
+        </p>
+
+    </div>
+
+</section>
+
+
+<main class="container">
+
+
+    <div class="form-card">
+
+
+        <div class="form-header">
+
+            <h2>
+                Arson Investigation Report Request
+            </h2>
+
+            <p>
+                Use this form to submit a request for an eligible
+                Los Angeles Fire Department arson investigation report.
+                Investigation records are subject to review before release.
+            </p>
+
+        </div>
+
+
+        <div class="notice">
+
+            <strong>
+                Important:
+            </strong>
+
+            Arson investigation reports may only be released when the
+            investigation has been closed and the record has been
+            approved for release. Submission of this form does not
+            guarantee that records will be released.
+
+        </div>
+
+
+        <form
+            onsubmit="submitForm(event)"
+        >
+
+
+            <div class="section">
+
+                <h3>
+                    Requestor Information
+                </h3>
+
+
+                <div class="two-column">
+
+
+                    <div class="field">
+
+                        <label>
+                            First Name <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="firstName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Last Name <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            name="lastName"
+                            required
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="two-column">
+
+
+                    <div class="field">
+
+                        <label>
+                            Email Address <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="email"
+                            name="email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Requestor Type <span class="required">*</span>
+                        </label>
+
+                        <select
+                            name="requestorType"
+                            required
+                        >
+
+                            <option value="">
+                                Select an option
+                            </option>
+
+                            <option>
+                                Member of the Public
+                            </option>
+
+                            <option>
+                                Insurance Representative
+                            </option>
+
+                            <option>
+                                Attorney / Legal Representative
+                            </option>
+
+                            <option>
+                                Media
+                            </option>
+
+                            <option>
+                                Government Agency
+                            </option>
+
+                            <option>
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>
+                    Investigation Information
+                </h3>
+
+
+                <div class="two-column">
+
+
+                    <div class="field">
+
+                        <label>
+                            Incident / Investigation Number
+                        </label>
+
+                        <input
+                            type="text"
+                            name="incidentNumber"
+                            placeholder="If known"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Incident Date
+                        </label>
+
+                        <input
+                            type="date"
+                            name="incidentDate"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Incident Location / Property
+                    </label>
+
+                    <input
+                        type="text"
+                        name="location"
+                        placeholder="Enter the location associated with the investigation"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Description of Record Requested <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        name="description"
+                        placeholder="Describe the arson investigation report or records you are requesting."
+                        required
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <div class="section">
+
+                <h3>
+                    Additional Information
+                </h3>
+
+
+                <div class="field">
+
+                    <label>
+                        Purpose of Request
+                    </label>
+
+                    <textarea
+                        name="purpose"
+                        placeholder="Provide any additional information that may assist in locating or reviewing the requested record."
+                    ></textarea>
+
+                </div>
+
+
+                <div class="checkbox">
+
+                    <input
+                        type="checkbox"
+                        id="certify"
+                        required
+                    >
+
+                    <label for="certify">
+
+                        I certify that the information provided in this
+                        request is accurate to the best of my knowledge.
+                        I understand that the requested record may be
+                        withheld, redacted, or unavailable for release
+                        under applicable requirements.
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <div class="submit-area">
+
+                <a
+                    href="fire-records-cpra-request.html"
+                    class="back-button"
+                >
+                    BACK TO RECORDS
+                </a>
+
+
+                <button
+                    type="submit"
+                    class="submit-button"
+                >
+                    SUBMIT REQUEST
+                </button>
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+</main>
+
+
+<footer>
+
+    © 2026 Los Angeles Fire Department — FiveM Roleplay
+
+</footer>
+
+
+<script>
+
+async function submitForm(event) {
+
+    event.preventDefault();
+
+    const form = event.target;
+
+    const formData = new FormData(form);
+
+    const number =
+        "LAFD-ARSON-" +
+        new Date().getFullYear() +
+        "-" +
+        Math.floor(100000 + Math.random() * 900000);
+
+
+    const webhook =
+        "https://discordapp.com/api/webhooks/1542693212039159949/BgMDZBMVDs_ru0N5ntGtApb7WoutEL-lZMACZD4vugrjP1sWN_EzsN_KNuCuKiaEg4VL";
+
+
+    const embed = {
+
+        title: "🔥 New Arson Investigation Report Request",
+
+        color: 11801115,
+
+        fields: [
+
+            {
+                name: "Request Number",
+                value: number,
+                inline: true
+            },
+
+            {
+                name: "Requestor",
+                value:
+                    formData.get("firstName") +
+                    " " +
+                    formData.get("lastName"),
+                inline: true
+            },
+
+            {
+                name: "Requestor Type",
+                value:
+                    formData.get("requestorType") || "Not provided",
+                inline: true
+            },
+
+            {
+                name: "Email",
+                value:
+                    formData.get("email") || "Not provided",
+                inline: false
+            },
+
+            {
+                name: "Incident / Investigation Number",
+                value:
+                    formData.get("incidentNumber") || "Not provided",
+                inline: true
+            },
+
+            {
+                name: "Incident Date",
+                value:
+                    formData.get("incidentDate") || "Not provided",
+                inline: true
+            },
+
+            {
+                name: "Location",
+                value:
+                    formData.get("location") || "Not provided",
+                inline: false
+            },
+
+            {
+                name: "Description",
+                value:
+                    formData.get("description") || "Not provided",
+                inline: false
+            },
+
+            {
+                name: "Purpose",
+                value:
+                    formData.get("purpose") || "Not provided",
+                inline: false
+            }
+
+        ],
+
+        footer: {
+            text: "LAFD FiveM Roleplay • Arson Records Request"
+        },
+
+        timestamp:
+            new Date().toISOString()
+
+    };
+
+
+    try {
+
+        const response = await fetch(
+            webhook,
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    username: "LAFD Records Portal",
+                    embeds: [embed]
+                })
+            }
+        );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Webhook submission failed"
+            );
+
+        }
+
+
+        alert(
+            "Request submitted successfully.\n\n" +
+            "Request Number: " +
+            number +
+            "\n\n" +
+            "Please retain this number for your records."
+        );
+
+
+        form.reset();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to submit the request.\n\n" +
+            "Please try again."
+        );
+
+    }
+
+}
+
+</script>
+
+
+</body>
+
+</html>
