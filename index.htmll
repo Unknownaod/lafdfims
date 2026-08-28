@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>FIMS | Los Angeles Fire Department</title>
+
+<link
+    rel="icon"
+    type="image/png"
+    href="./lafd-logo.png"
+>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        background: #f5f5f5;
+        color: #222;
+    }
+
+    /* ================================
+       CITY BAR
+    ================================= */
+
+    .city-bar {
+        min-height: 38px;
+        background: #eeeeee;
+        border-bottom: 1px solid #d5d5d5;
+
+        display: flex;
+        align-items: center;
+
+        padding: 0 55px;
+
+        font-size: 12px;
+        color: #444;
+    }
+
+    .city-bar-logo {
+        width: 22px;
+        height: 22px;
+
+        object-fit: contain;
+
+        margin-right: 9px;
+    }
+
+    .city-bar span {
+        font-weight: 600;
+    }
+
+    /* ================================
+       HEADER
+    ================================= */
+
+    header {
+        min-height: 82px;
+
+        background: #b5121b;
+
+        display: flex;
+        align-items: center;
+
+        padding: 0 55px;
+
+        color: white;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .lafd-logo {
+        width: 54px;
+        height: 54px;
+
+        object-fit: contain;
+
+        background: white;
+
+        border-radius: 50%;
+
+        padding: 3px;
+    }
+
+    .city-logo {
+        width: 47px;
+        height: 47px;
+
+        object-fit: contain;
+    }
+
+    .logo-divider {
+        width: 1px;
+        height: 44px;
+
+        background: rgba(255,255,255,.45);
+
+        margin: 0 3px;
+    }
+
+    .brand-text h1 {
+        font-size: 19px;
+        font-weight: 700;
+    }
+
+    .brand-text p {
+        margin-top: 3px;
+
+        font-size: 11px;
+
+        color: #eeeeee;
+    }
+
+    nav {
+        margin-left: auto;
+
+        display: flex;
+
+        gap: 27px;
+    }
+
+    nav a {
+        color: white;
+
+        text-decoration: none;
+
+        font-size: 13px;
+
+        font-weight: 600;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    /* ================================
+       PORTAL HEADER
+    ================================= */
+
+    .portal-header {
+        background: #222;
+
+        color: white;
+
+        padding: 30px 55px;
+    }
+
+    .portal-header-inner {
+        max-width: 1180px;
+
+        margin: auto;
+    }
+
+    .portal-header h2 {
+        font-size: 26px;
+    }
+
+    .portal-header p {
+        margin-top: 6px;
+
+        color: #ccc;
+
+        font-size: 12px;
+    }
+
+    /* ================================
+       MAIN
+    ================================= */
+
+    .container {
+        max-width: 1180px;
+
+        margin: auto;
+
+        padding: 35px 25px 70px;
+    }
+
+    /* ================================
+       INTRO
+    ================================= */
+
+    .intro {
+        background: white;
+
+        border: 1px solid #ddd;
+
+        padding: 28px;
+
+        margin-bottom: 25px;
+    }
+
+    .intro h2 {
+        font-size: 23px;
+
+        margin-bottom: 9px;
+    }
+
+    .intro .red-line {
+        width: 50px;
+
+        height: 4px;
+
+        background: #b5121b;
+
+        margin-bottom: 17px;
+    }
+
+    .intro p {
+        color: #555;
+
+        font-size: 13px;
+
+        line-height: 1.8;
+
+        max-width: 900px;
+    }
+
+    /* ================================
+       QUICK ACTIONS
+    ================================= */
+
+    .section-title {
+        font-size: 21px;
+
+        margin: 30px 0 15px;
+
+        padding-bottom: 9px;
+
+        border-bottom: 2px solid #b5121b;
+    }
+
+    .action-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 15px;
+    }
+
+    .action-card {
+        background: white;
+
+        border: 1px solid #ddd;
+
+        padding: 23px;
+
+        text-decoration: none;
+
+        color: #222;
+
+        transition: .15s;
+    }
+
+    .action-card:hover {
+        border-color: #b5121b;
+
+        transform: translateY(-2px);
+    }
+
+    .action-icon {
+        width: 44px;
+        height: 44px;
+
+        background: #b5121b;
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        font-size: 18px;
+
+        font-weight: bold;
+
+        margin-bottom: 15px;
+    }
+
+    .action-card h3 {
+        font-size: 15px;
+
+        margin-bottom: 7px;
+    }
+
+    .action-card p {
+        color: #666;
+
+        font-size: 12px;
+
+        line-height: 1.6;
+    }
+
+    /* ================================
+       APPLICATIONS
+    ================================= */
+
+    .applications {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 15px;
+    }
+
+    .application {
+        background: white;
+
+        border: 1px solid #ddd;
+
+        padding: 23px;
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 18px;
+    }
+
+    .application-number {
+        width: 45px;
+        height: 45px;
+
+        flex-shrink: 0;
+
+        background: #333;
+
+        color: white;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        font-size: 15px;
+
+        font-weight: bold;
+    }
+
+    .application-content {
+        flex: 1;
+    }
+
+    .application h3 {
+        font-size: 14px;
+
+        margin-bottom: 6px;
+    }
+
+    .application p {
+        color: #666;
+
+        font-size: 12px;
+
+        line-height: 1.55;
+    }
+
+    .apply-button {
+        background: #b5121b;
+
+        color: white;
+
+        text-decoration: none;
+
+        padding: 10px 14px;
+
+        font-size: 10px;
+
+        font-weight: bold;
+
+        white-space: nowrap;
+    }
+
+    .apply-button:hover {
+        background: #951019;
+    }
+
+    /* ================================
+       STATUS
+    ================================= */
+
+    .status-box {
+        background: #222;
+
+        color: white;
+
+        padding: 28px;
+
+        margin-top: 30px;
+    }
+
+    .status-box h3 {
+        font-size: 19px;
+
+        margin-bottom: 7px;
+    }
+
+    .status-box p {
+        color: #ccc;
+
+        font-size: 12px;
+
+        margin-bottom: 18px;
+
+        line-height: 1.6;
+    }
+
+    .status-form {
+        display: flex;
+
+        gap: 10px;
+    }
+
+    .status-form input {
+        flex: 1;
+
+        height: 42px;
+
+        border: none;
+
+        padding: 0 13px;
+
+        font-size: 12px;
+
+        outline: none;
+    }
+
+    .status-form button {
+        height: 42px;
+
+        border: none;
+
+        background: #b5121b;
+
+        color: white;
+
+        padding: 0 22px;
+
+        font-size: 11px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+    }
+
+    .status-form button:hover {
+        background: #951019;
+    }
+
+    /* ================================
+       INFORMATION
+    ================================= */
+
+    .info-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 15px;
+    }
+
+    .info-card {
+        background: white;
+
+        border: 1px solid #ddd;
+
+        padding: 22px;
+    }
+
+    .info-card h3 {
+        font-size: 15px;
+
+        margin-bottom: 8px;
+    }
+
+    .info-card p {
+        color: #666;
+
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+
+    .info-card a {
+        display: inline-block;
+
+        margin-top: 12px;
+
+        color: #b5121b;
+
+        font-size: 11px;
+
+        font-weight: bold;
+
+        text-decoration: none;
+    }
+
+    .info-card a:hover {
+        text-decoration: underline;
+    }
+
+    /* ================================
+       NOTICE
+    ================================= */
+
+    .notice {
+        margin-top: 30px;
+
+        background: #fff8e5;
+
+        border: 1px solid #ead9a5;
+
+        border-left: 5px solid #d59b00;
+
+        padding: 18px;
+
+        color: #665522;
+
+        font-size: 12px;
+
+        line-height: 1.7;
+    }
+
+    .notice strong {
+        display: block;
+
+        color: #554400;
+
+        margin-bottom: 5px;
+    }
+
+    /* ================================
+       FOOTER
+    ================================= */
+
+    footer {
+        background: #111;
+
+        color: #999;
+
+        text-align: center;
+
+        padding: 27px;
+
+        font-size: 11px;
+    }
+
+    footer strong {
+        color: #ddd;
+    }
+
+    /* ================================
+       MOBILE
+    ================================= */
+
+    @media (max-width: 850px) {
+
+        .city-bar {
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 15px 20px;
+        }
+
+        nav {
+            display: none;
+        }
+
+        .portal-header {
+            padding: 25px 20px;
+        }
+
+        .action-grid {
+            grid-template-columns:
+                repeat(2, 1fr);
+        }
+
+        .applications {
+            grid-template-columns: 1fr;
+        }
+
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+
+    }
+
+    @media (max-width: 550px) {
+
+        .action-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .application {
+            align-items: flex-start;
+
+            flex-direction: column;
+        }
+
+        .apply-button {
+            width: 100%;
+
+            text-align: center;
+        }
+
+        .status-form {
+            flex-direction: column;
+        }
+
+        .status-form button {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<!-- ================================
+     CITY BAR
+================================= -->
+
+<div class="city-bar">
+
+
+<img
+    src="la-city-logo.png"
+    alt="City of Los Angeles"
+    class="city-bar-logo"
+>
+
+<span>
+    An official website of the City of Los Angeles
+</span>
+
+
+</div>
+
+<!-- ================================
+     HEADER
+================================= -->
+
+<header>
+
+
+<div class="brand">
+
+    <img
+        src="lafd-logo.png"
+        alt="Los Angeles Fire Department"
+        class="lafd-logo"
+    >
+
+    <div class="logo-divider"></div>
+
+    <img
+        src="la-city-logo.png"
+        alt="City of Los Angeles"
+        class="city-logo"
+    >
+
+    <div class="brand-text">
+
+        <h1>
+            Los Angeles Fire Department
+        </h1>
+
+        <p>
+            City of Los Angeles
+        </p>
+
+    </div>
+
+</div>
+
+
+<nav>
+
+    <a href="index.html">
+        FIMS Home
+    </a>
+
+    <a href="applications.html">
+        Applications
+    </a>
+
+    <a href="inspections.html">
+        Inspections
+    </a>
+
+    <a href="fire-code.html">
+        Fire Code
+    </a>
+
+    <a href="contact.html">
+        Contact
+    </a>
+
+</nav>
+
+
+</header>
+
+<!-- ================================
+     PORTAL HEADER
+================================= -->
+
+<section class="portal-header">
+
+
+<div class="portal-header-inner">
+
+    <h2>
+        Fire Inspection Management System
+    </h2>
+
+    <p>
+        Fire Prevention & Life Safety Services
+    </p>
+
+</div>
+
+
+</section>
+
+<!-- ================================
+     MAIN
+================================= -->
+
+<main class="container">
+
+
+<!-- INTRO -->
+
+<section class="intro">
+
+    <h2>
+        Welcome to FIMS
+    </h2>
+
+    <div class="red-line"></div>
+
+    <p>
+
+        The Fire Inspection Management System provides access
+        to Los Angeles Fire Department Fire Prevention services,
+        applications, inspection requests, fire code information,
+        and other public safety resources.
+
+    </p>
+
+</section>
+
+
+<!-- QUICK ACTIONS -->
+
+<h2 class="section-title">
+    Quick Services
+</h2>
+
+
+<div class="action-grid">
+
+
+    <a
+        href="applications.html"
+        class="action-card"
+    >
+
+        <div class="action-icon">
+            +
+        </div>
+
+        <h3>
+            Applications
+        </h3>
+
+        <p>
+            Submit applications for Fire Department permits,
+            inspections, events, and other services.
+        </p>
+
+    </a>
+
+
+    <a
+        href="inspections.html"
+        class="action-card"
+    >
+
+        <div class="action-icon">
+            ✓
+        </div>
+
+        <h3>
+            Inspections
+        </h3>
+
+        <p>
+            Request a fire inspection or review information
+            regarding an existing inspection.
+        </p>
+
+    </a>
+
+
+    <a
+        href="fire-code.html"
+        class="action-card"
+    >
+
+        <div class="action-icon">
+            §
+        </div>
+
+        <h3>
+            Fire Code
+        </h3>
+
+        <p>
+            Review fire and life-safety requirements,
+            regulations, and applicable code information.
+        </p>
+
+    </a>
+
+
+    <a
+        href="brush.html"
+        class="action-card"
+    >
+
+        <div class="action-icon">
+            B
+        </div>
+
+        <h3>
+            Brush Clearance
+        </h3>
+
+        <p>
+            Learn about brush clearance requirements and
+            wildfire prevention responsibilities.
+        </p>
+
+    </a>
+
+
+    <a
+        href="development.html"
+        class="action-card"
+    >
+
+        <div class="action-icon">
+            F
+        </div>
+
+        <h3>
+            Fire Development
+        </h3>
+
+        <p>
+            Fire plan review, development requirements,
+            access, hydrants, and related information.
+        </p>
+
+    </a>
+
+
+    <a
+        href="public-assemblage.html"
+        class="action-card"
+    >
+
+        <div class="action-icon">
+            A
+        </div>
+
+        <h3>
+            Public Assemblage
+        </h3>
+
+        <p>
+            Information and applications for public events,
+            assemblies, tents, and related activities.
+        </p>
+
+    </a>
+
+
+</div>
+
+
+<!-- APPLICATIONS -->
+
+<h2 class="section-title">
+    Common Applications
+</h2>
+
+
+<div class="applications">
+
+
+    <div class="application">
+
+        <div class="application-number">
+            01
+        </div>
+
+        <div class="application-content">
+
+            <h3>
+                Fire Safety Inspection
+            </h3>
+
+            <p>
+                Request a Fire Department inspection for
+                a property or business.
+            </p>
+
+        </div>
+
+        <a
+            href="applications.html?type=inspection"
+            class="apply-button"
+        >
+            APPLY
+        </a>
+
+    </div>
+
+
+    <div class="application">
+
+        <div class="application-number">
+            02
+        </div>
+
+        <div class="application-content">
+
+            <h3>
+                Special Event
+            </h3>
+
+            <p>
+                Submit an application for a special event
+                requiring Fire Department review.
+            </p>
+
+        </div>
+
+        <a
+            href="applications.html?type=event"
+            class="apply-button"
+        >
+            APPLY
+        </a>
+
+    </div>
+
+
+    <div class="application">
+
+        <div class="application-number">
+            03
+        </div>
+
+        <div class="application-content">
+
+            <h3>
+                Tent / Canopy
+            </h3>
+
+            <p>
+                Submit information for tents, canopies,
+                and temporary structures.
+            </p>
+
+        </div>
+
+        <a
+            href="applications.html?type=tent"
+            class="apply-button"
+        >
+            APPLY
+        </a>
+
+    </div>
+
+
+    <div class="application">
+
+        <div class="application-number">
+            04
+        </div>
+
+        <div class="application-content">
+
+            <h3>
+                Fire Protection System
+            </h3>
+
+            <p>
+                Request review or inspection relating to
+                fire protection systems and equipment.
+            </p>
+
+        </div>
+
+        <a
+            href="applications.html?type=fire-protection"
+            class="apply-button"
+        >
+            APPLY
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- STATUS -->
+
+<section class="status-box">
+
+    <h3>
+        Check Application Status
+    </h3>
+
+    <p>
+        Enter your application or reference number to
+        view the current status of your submission.
+    </p>
+
+
+    <div class="status-form">
+
+        <input
+            type="text"
+            placeholder="Application / Reference Number"
+        >
+
+        <button>
+            CHECK STATUS
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- INFORMATION -->
+
+<h2 class="section-title">
+    Fire Prevention Information
+</h2>
+
+
+<div class="info-grid">
+
+
+    <div class="info-card">
+
+        <h3>
+            Chief's Regulation 4
+        </h3>
+
+        <p>
+            Information regarding testing, inspection,
+            and certification of fire protection equipment.
+        </p>
+
+        <a href="chiefs-regulation-4.html">
+            LEARN MORE →
+        </a>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <h3>
+            Fire Development Services
+        </h3>
+
+        <p>
+            Information regarding plan review, construction,
+            fire access, hydrants, and development projects.
+        </p>
+
+        <a href="development.html">
+            LEARN MORE →
+        </a>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <h3>
+            Brush Clearance
+        </h3>
+
+        <p>
+            Learn about vegetation management, brush clearance,
+            and wildfire safety requirements.
+        </p>
+
+        <a href="brush.html">
+            LEARN MORE →
+        </a>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <h3>
+            Public Assemblage
+        </h3>
+
+        <p>
+            Fire safety information for public assemblies,
+            events, tents, and temporary structures.
+        </p>
+
+        <a href="public-assemblage.html">
+            LEARN MORE →
+        </a>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <h3>
+            Fire Code
+        </h3>
+
+        <p>
+            Review applicable fire prevention and life-safety
+            requirements.
+        </p>
+
+        <a href="fire-code.html">
+            VIEW FIRE CODE →
+        </a>
+
+    </div>
+
+
+    <div class="info-card">
+
+        <h3>
+            Contact Fire Prevention
+        </h3>
+
+        <p>
+            Find contact information and assistance for
+            Fire Prevention services.
+        </p>
+
+        <a href="contact.html">
+            CONTACT US →
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<!-- NOTICE -->
+
+<div class="notice">
+
+    <strong>
+        IMPORTANT NOTICE
+    </strong>
+
+    FIMS is intended for Fire Prevention and administrative
+    services. This system is not monitored for emergency
+    response. For an emergency, immediately dial
+    <strong>9-1-1</strong>.
+
+</div>
+
+
+</main>
+
+<!-- ================================
+     FOOTER
+================================= -->
+
+<footer>
+
+
+<strong>
+    Los Angeles Fire Department
+</strong>
+
+<br><br>
+
+Fire Inspection Management System
+
+<br>
+
+© 2026 Los Angeles Fire Department — FiveM Roleplay
+
+
+</footer>
+
+</body>
+
+</html>
