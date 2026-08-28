@@ -40,6 +40,11 @@ body {
     width: 22px;
     height: 22px;
     margin-right: 9px;
+    object-fit: contain;
+}
+
+.city-bar span {
+    font-weight: 600;
 }
 
 header {
@@ -63,11 +68,13 @@ header {
     background: white;
     border-radius: 50%;
     padding: 3px;
+    object-fit: contain;
 }
 
 .city-logo {
     width: 47px;
     height: 47px;
+    object-fit: contain;
 }
 
 .logo-divider {
@@ -97,6 +104,10 @@ nav a {
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
+}
+
+nav a:hover {
+    text-decoration: underline;
 }
 
 .page-header {
@@ -190,15 +201,15 @@ textarea {
     background: white;
 }
 
-textarea {
-    min-height: 110px;
-    resize: vertical;
-}
-
 input:focus,
 select:focus,
 textarea:focus {
     border-color: #b5121b;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
 }
 
 .notice {
@@ -210,6 +221,11 @@ textarea:focus {
     color: #665522;
     font-size: 12px;
     line-height: 1.6;
+}
+
+.notice strong {
+    display: block;
+    margin-bottom: 4px;
 }
 
 .submit-area {
@@ -228,6 +244,15 @@ textarea:focus {
     cursor: pointer;
 }
 
+.submit:hover {
+    background: #951019;
+}
+
+.submit:disabled {
+    background: #777;
+    cursor: not-allowed;
+}
+
 .cancel {
     background: #333;
     color: white;
@@ -235,6 +260,32 @@ textarea:focus {
     padding: 13px 24px;
     font-size: 11px;
     font-weight: bold;
+}
+
+.cancel:hover {
+    background: #222;
+}
+
+#applicationStatus {
+    display: none;
+    margin-top: 18px;
+    padding: 13px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+#applicationStatus.success {
+    display: block;
+    background: #edf8f0;
+    border: 1px solid #b7dfc0;
+    color: #176b2c;
+}
+
+#applicationStatus.error {
+    display: block;
+    background: #fff0f0;
+    border: 1px solid #e3b5b5;
+    color: #a30000;
 }
 
 footer {
@@ -275,6 +326,20 @@ footer strong {
         grid-column: auto;
     }
 
+    .form-box {
+        padding: 22px;
+    }
+
+    .submit-area {
+        flex-direction: column;
+    }
+
+    .submit,
+    .cancel {
+        width: 100%;
+        text-align: center;
+    }
+
 }
 
 </style>
@@ -283,248 +348,486 @@ footer strong {
 
 <body>
 
+<!-- CITY BAR -->
+
 <div class="city-bar">
 
-<img src="la-city-logo.png">
+```
+<img
+    src="la-city-logo.png"
+    alt="City of Los Angeles"
+>
 
-<span>An official website of the City of Los Angeles</span>
+<span>
+    An official website of the City of Los Angeles
+</span>
+```
 
 </div>
+
+<!-- HEADER -->
 
 <header>
 
+```
 <div class="brand">
 
-<img src="lafd-logo.png" class="lafd-logo">
+    <img
+        src="lafd-logo.png"
+        class="lafd-logo"
+        alt="Los Angeles Fire Department"
+    >
 
-<div class="logo-divider"></div>
+    <div class="logo-divider"></div>
 
-<img src="la-city-logo.png" class="city-logo">
+    <img
+        src="la-city-logo.png"
+        class="city-logo"
+        alt="City of Los Angeles"
+    >
 
-<div class="brand-text">
+    <div class="brand-text">
 
-<h1>Los Angeles Fire Department</h1>
+        <h1>
+            Los Angeles Fire Department
+        </h1>
 
-<p>City of Los Angeles</p>
+        <p>
+            City of Los Angeles
+        </p>
+
+    </div>
 
 </div>
 
-</div>
 
 <nav>
 
-<a href="index.html">FIMS Home</a> <a href="applications.html">Applications</a> <a href="inspections.html">Inspections</a> <a href="fire-code.html">Fire Code</a> <a href="contact.html">Contact</a>
+    <a href="index.html">
+        FIMS Home
+    </a>
+
+    <a href="applications.html">
+        Applications
+    </a>
+
+    <a href="inspections.html">
+        Inspections
+    </a>
+
+    <a href="fire-code.html">
+        Fire Code
+    </a>
+
+    <a href="contact.html">
+        Contact
+    </a>
 
 </nav>
+```
 
 </header>
 
+<!-- PAGE HEADER -->
+
 <section class="page-header">
 
+```
 <div class="page-header-inner">
 
-<h2>Fire Protection System Application</h2>
+    <h2>
+        Fire Protection System Application
+    </h2>
 
-<p>Fire Protection Equipment & System Review</p>
+    <p>
+        Fire Protection Equipment & System Review
+    </p>
 
 </div>
+```
 
 </section>
 
+<!-- MAIN -->
+
 <main class="container">
 
-<form class="form-box">
+<form
+    class="form-box"
+    id="applicationForm"
+>
 
-<h2>Fire Protection System Application</h2>
+```
+<h2>
+    Fire Protection System Application
+</h2>
 
 <div class="red-line"></div>
 
-<div class="form-section">
 
-<h3>Applicant Information</h3>
-
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Applicant Name <span class="required">*</span></label>
-
-<input type="text" required>
-
-</div>
-
-<div class="form-group">
-
-<label>Phone Number <span class="required">*</span></label>
-
-<input type="tel" required>
-
-</div>
-
-<div class="form-group">
-
-<label>Email Address</label>
-
-<input type="email">
-
-</div>
-
-<div class="form-group">
-
-<label>Company / Organization</label>
-
-<input type="text">
-
-</div>
-
-</div>
-
-</div>
+<!-- APPLICANT INFORMATION -->
 
 <div class="form-section">
 
-<h3>Property Information</h3>
+    <h3>
+        Applicant Information
+    </h3>
 
-<div class="form-grid">
+    <div class="form-grid">
 
-<div class="form-group full">
 
-<label>Property Address <span class="required">*</span></label>
+        <div class="form-group">
 
-<input type="text" required>
+            <label>
+                Applicant Name
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                name="applicantName"
+                autocomplete="name"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Phone Number
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="tel"
+                name="phone"
+                autocomplete="tel"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                autocomplete="email"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Company / Organization
+            </label>
+
+            <input
+                type="text"
+                name="company"
+                autocomplete="organization"
+            >
+
+        </div>
+
+
+    </div>
 
 </div>
 
-<div class="form-group">
 
-<label>City</label>
-
-<input type="text" value="Los Angeles">
-
-</div>
-
-<div class="form-group">
-
-<label>ZIP Code</label>
-
-<input type="text">
-
-</div>
-
-</div>
-
-</div>
+<!-- PROPERTY INFORMATION -->
 
 <div class="form-section">
 
-<h3>System Information</h3>
+    <h3>
+        Property Information
+    </h3>
 
-<div class="form-grid">
+    <div class="form-grid">
 
-<div class="form-group">
 
-<label>System Type <span class="required">*</span></label>
+        <div class="form-group full">
 
-<select required>
+            <label>
+                Property Address
+                <span class="required">*</span>
+            </label>
 
-<option value="">Select System</option>
+            <input
+                type="text"
+                name="propertyAddress"
+                autocomplete="street-address"
+                required
+            >
 
-<option>Automatic Fire Sprinkler</option>
-<option>Fire Alarm System</option>
-<option>Standpipe System</option>
-<option>Fire Pump</option>
-<option>Commercial Hood System</option>
-<option>Other</option>
+        </div>
 
-</select>
 
-</div>
+        <div class="form-group">
 
-<div class="form-group">
+            <label>
+                City
+            </label>
 
-<label>Request Type <span class="required">*</span></label>
+            <input
+                type="text"
+                name="city"
+                value="Los Angeles"
+            >
 
-<select required>
+        </div>
 
-<option value="">Select Request</option>
 
-<option>New Installation</option>
-<option>Modification</option>
-<option>Inspection</option>
-<option>Testing</option>
-<option>Reinspection</option>
+        <div class="form-group">
 
-</select>
+            <label>
+                ZIP Code
+            </label>
 
-</div>
+            <input
+                type="text"
+                name="zipCode"
+                autocomplete="postal-code"
+            >
 
-<div class="form-group">
+        </div>
 
-<label>Building / Facility Type</label>
 
-<select>
-
-<option>Commercial</option>
-<option>Residential</option>
-<option>Industrial</option>
-<option>Assembly</option>
-<option>Other</option>
-
-</select>
-
-</div>
-
-<div class="form-group">
-
-<label>Number of Systems</label>
-
-<input type="number" min="1">
+    </div>
 
 </div>
 
-<div class="form-group full">
 
-<label>System Description</label>
+<!-- SYSTEM INFORMATION -->
 
-<textarea
-placeholder="Describe the fire protection system or requested work."
-></textarea>
+<div class="form-section">
+
+    <h3>
+        System Information
+    </h3>
+
+    <div class="form-grid">
+
+
+        <div class="form-group">
+
+            <label>
+                System Type
+                <span class="required">*</span>
+            </label>
+
+            <select
+                name="systemType"
+                required
+            >
+
+                <option value="">
+                    Select System
+                </option>
+
+                <option value="Automatic Fire Sprinkler">
+                    Automatic Fire Sprinkler
+                </option>
+
+                <option value="Fire Alarm System">
+                    Fire Alarm System
+                </option>
+
+                <option value="Standpipe System">
+                    Standpipe System
+                </option>
+
+                <option value="Fire Pump">
+                    Fire Pump
+                </option>
+
+                <option value="Commercial Hood System">
+                    Commercial Hood System
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Request Type
+                <span class="required">*</span>
+            </label>
+
+            <select
+                name="requestType"
+                required
+            >
+
+                <option value="">
+                    Select Request
+                </option>
+
+                <option value="New Installation">
+                    New Installation
+                </option>
+
+                <option value="Modification">
+                    Modification
+                </option>
+
+                <option value="Inspection">
+                    Inspection
+                </option>
+
+                <option value="Testing">
+                    Testing
+                </option>
+
+                <option value="Reinspection">
+                    Reinspection
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Building / Facility Type
+            </label>
+
+            <select
+                name="facilityType"
+            >
+
+                <option value="Commercial">
+                    Commercial
+                </option>
+
+                <option value="Residential">
+                    Residential
+                </option>
+
+                <option value="Industrial">
+                    Industrial
+                </option>
+
+                <option value="Assembly">
+                    Assembly
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Number of Systems
+            </label>
+
+            <input
+                type="number"
+                name="numberOfSystems"
+                min="1"
+            >
+
+        </div>
+
+
+        <div class="form-group full">
+
+            <label>
+                System Description
+            </label>
+
+            <textarea
+                name="systemDescription"
+                placeholder="Describe the fire protection system or requested work."
+            ></textarea>
+
+        </div>
+
+
+    </div>
 
 </div>
 
-</div>
 
-</div>
+<!-- NOTICE -->
 
 <div class="notice">
 
-<strong>Important</strong>
+    <strong>
+        Important
+    </strong>
 
-Fire protection systems may be subject to inspection,
-testing, documentation, and additional Fire Department
-requirements before approval.
+    Fire protection systems may be subject to inspection,
+    testing, documentation, and additional Fire Department
+    requirements before approval.
 
 </div>
+
+
+<!-- SUBMIT -->
 
 <div class="submit-area">
 
-<button type="submit" class="submit">
-SUBMIT APPLICATION
-</button>
+    <button
+        type="submit"
+        class="submit"
+    >
+        SUBMIT APPLICATION
+    </button>
 
-<a href="applications.html" class="cancel">
-CANCEL
-</a>
+
+    <a
+        href="applications.html"
+        class="cancel"
+    >
+        CANCEL
+    </a>
 
 </div>
+
+
+<!-- STATUS -->
+
+<div id="applicationStatus"></div>
+```
 
 </form>
 
 </main>
 
+<!-- FOOTER -->
+
 <footer>
 
-<strong>Los Angeles Fire Department</strong>
+```
+<strong>
+    Los Angeles Fire Department
+</strong>
 
 <br><br>
 
@@ -533,8 +836,158 @@ Fire Inspection Management System
 <br>
 
 © 2026 Los Angeles Fire Department — FiveM Roleplay
+```
 
 </footer>
+
+<!-- APPLICATION SUBMISSION -->
+
+<script>
+
+const form =
+    document.getElementById("applicationForm");
+
+const statusMessage =
+    document.getElementById("applicationStatus");
+
+
+form.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const submitButton =
+            form.querySelector(
+                "button[type='submit']"
+            );
+
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+            "SUBMITTING...";
+
+
+        statusMessage.className = "";
+
+        statusMessage.style.display =
+            "block";
+
+        statusMessage.textContent =
+            "Submitting your fire protection system application...";
+
+
+        const formData =
+            new FormData(form);
+
+
+        const application =
+            Object.fromEntries(
+                formData.entries()
+            );
+
+
+        application.applicationType =
+            "Fire Protection System Application";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/applications",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(
+                                application
+                            )
+
+                    }
+                );
+
+
+            let result = {};
+
+
+            try {
+
+                result =
+                    await response.json();
+
+            } catch {
+
+                result = {};
+
+            }
+
+
+            if (
+                !response.ok ||
+                !result.success
+            ) {
+
+                throw new Error(
+                    result.message ||
+                    "Unable to submit your application."
+                );
+
+            }
+
+
+            statusMessage.className =
+                "success";
+
+
+            statusMessage.textContent =
+                "Your application was submitted successfully. " +
+                "Application ID: " +
+                result.applicationId;
+
+
+            form.reset();
+
+
+        } catch(error) {
+
+            console.error(
+                "Application submission error:",
+                error
+            );
+
+
+            statusMessage.className =
+                "error";
+
+
+            statusMessage.textContent =
+                error.message ||
+                "An error occurred while submitting your application.";
+
+
+        } finally {
+
+            submitButton.disabled =
+                false;
+
+            submitButton.textContent =
+                "SUBMIT APPLICATION";
+
+        }
+
+    }
+);
+
+</script>
 
 </body>
 
