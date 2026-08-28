@@ -67,11 +67,13 @@ header {
     background: white;
     border-radius: 50%;
     padding: 3px;
+    object-fit: contain;
 }
 
 .city-logo {
     width: 47px;
     height: 47px;
+    object-fit: contain;
 }
 
 .logo-divider {
@@ -101,6 +103,10 @@ nav a {
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
+}
+
+nav a:hover {
+    text-decoration: underline;
 }
 
 .page-header {
@@ -217,10 +223,16 @@ textarea {
     margin-top: 25px;
 }
 
+.notice strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
 .submit-area {
     margin-top: 30px;
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
 .submit {
@@ -233,6 +245,15 @@ textarea {
     cursor: pointer;
 }
 
+.submit:hover {
+    background: #951019;
+}
+
+.submit:disabled {
+    background: #888;
+    cursor: not-allowed;
+}
+
 .cancel {
     background: #333;
     color: white;
@@ -240,6 +261,32 @@ textarea {
     padding: 13px 24px;
     font-size: 11px;
     font-weight: bold;
+}
+
+.cancel:hover {
+    background: #222;
+}
+
+#applicationStatus {
+    margin-top: 18px;
+    padding: 12px;
+    font-size: 12px;
+    line-height: 1.5;
+    display: none;
+}
+
+#applicationStatus.success {
+    display: block;
+    background: #edf8f0;
+    border: 1px solid #b7dfc0;
+    color: #176b2c;
+}
+
+#applicationStatus.error {
+    display: block;
+    background: #fff0f0;
+    border: 1px solid #e3b5b5;
+    color: #a30000;
 }
 
 footer {
@@ -284,6 +331,17 @@ footer strong {
         padding: 22px;
     }
 
+    .submit-area {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .submit,
+    .cancel {
+        text-align: center;
+        width: 100%;
+    }
+
 }
 
 </style>
@@ -292,102 +350,177 @@ footer strong {
 
 <body>
 
+<!-- ================================
+     CITY BAR
+================================ -->
+
 <div class="city-bar">
 
-
-<img src="la-city-logo.png" alt="City of Los Angeles">
+```
+<img
+    src="la-city-logo.png"
+    alt="City of Los Angeles"
+>
 
 <span>
     An official website of the City of Los Angeles
 </span>
-
+```
 
 </div>
 
+<!-- ================================
+     HEADER
+================================ -->
+
 <header>
 
-
+```
 <div class="brand">
 
-    <img src="lafd-logo.png" class="lafd-logo" alt="LAFD">
+    <img
+        src="lafd-logo.png"
+        class="lafd-logo"
+        alt="Los Angeles Fire Department"
+    >
 
     <div class="logo-divider"></div>
 
-    <img src="la-city-logo.png" class="city-logo" alt="City">
+    <img
+        src="la-city-logo.png"
+        class="city-logo"
+        alt="City of Los Angeles"
+    >
 
     <div class="brand-text">
 
-        <h1>Los Angeles Fire Department</h1>
+        <h1>
+            Los Angeles Fire Department
+        </h1>
 
-        <p>City of Los Angeles</p>
+        <p>
+            City of Los Angeles
+        </p>
 
     </div>
 
 </div>
 
+
 <nav>
 
-    <a href="index.html">FIMS Home</a>
-    <a href="applications.html">Applications</a>
-    <a href="inspections.html">Inspections</a>
-    <a href="fire-code.html">Fire Code</a>
-    <a href="contact.html">Contact</a>
+    <a href="index.html">
+        FIMS Home
+    </a>
+
+    <a href="applications.html">
+        Applications
+    </a>
+
+    <a href="inspections.html">
+        Inspections
+    </a>
+
+    <a href="fire-code.html">
+        Fire Code
+    </a>
+
+    <a href="contact.html">
+        Contact
+    </a>
 
 </nav>
-
+```
 
 </header>
 
+<!-- ================================
+     PAGE HEADER
+================================ -->
+
 <section class="page-header">
 
-
+```
 <div class="page-header-inner">
 
-    <h2>Fire Inspection Request</h2>
+    <h2>
+        Fire Inspection Request
+    </h2>
 
     <p>
         Fire Prevention Inspection Application
     </p>
 
 </div>
-
+```
 
 </section>
 
+<!-- ================================
+     MAIN
+================================ -->
+
 <main class="container">
 
-<form class="form-box">
+<form
+    class="form-box"
+    id="applicationForm"
+>
 
-
-<h2>Inspection Request</h2>
+```
+<h2>
+    Inspection Request
+</h2>
 
 <div class="red-line"></div>
 
+
+<!-- ================================
+     APPLICANT INFORMATION
+================================= -->
+
 <div class="form-section">
 
-    <h3>Applicant Information</h3>
+    <h3>
+        Applicant Information
+    </h3>
 
     <div class="form-grid">
 
-        <div class="form-group">
-
-            <label>
-                Full Name <span class="required">*</span>
-            </label>
-
-            <input type="text" required>
-
-        </div>
 
         <div class="form-group">
 
             <label>
-                Phone Number <span class="required">*</span>
+                Full Name
+                <span class="required">*</span>
             </label>
 
-            <input type="tel" required>
+            <input
+                type="text"
+                name="fullName"
+                autocomplete="name"
+                required
+            >
 
         </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Phone Number
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="tel"
+                name="phone"
+                autocomplete="tel"
+                required
+            >
+
+        </div>
+
 
         <div class="form-group">
 
@@ -395,9 +528,14 @@ footer strong {
                 Email Address
             </label>
 
-            <input type="email">
+            <input
+                type="email"
+                name="email"
+                autocomplete="email"
+            >
 
         </div>
+
 
         <div class="form-group">
 
@@ -405,40 +543,66 @@ footer strong {
                 Organization / Business
             </label>
 
-            <input type="text">
+            <input
+                type="text"
+                name="organization"
+                autocomplete="organization"
+            >
 
         </div>
+
 
     </div>
 
 </div>
 
 
+<!-- ================================
+     PROPERTY INFORMATION
+================================= -->
+
 <div class="form-section">
 
-    <h3>Property Information</h3>
+    <h3>
+        Property Information
+    </h3>
 
     <div class="form-grid">
+
 
         <div class="form-group full">
 
             <label>
-                Property Address <span class="required">*</span>
+                Property Address
+                <span class="required">*</span>
             </label>
 
-            <input type="text" required>
+            <input
+                type="text"
+                name="propertyAddress"
+                autocomplete="street-address"
+                required
+            >
 
         </div>
+
 
         <div class="form-group">
 
             <label>
-                City <span class="required">*</span>
+                City
+                <span class="required">*</span>
             </label>
 
-            <input type="text" value="Los Angeles" required>
+            <input
+                type="text"
+                name="city"
+                value="Los Angeles"
+                required
+            >
 
         </div>
+
 
         <div class="form-group">
 
@@ -446,40 +610,73 @@ footer strong {
                 ZIP Code
             </label>
 
-            <input type="text">
+            <input
+                type="text"
+                name="zipCode"
+                autocomplete="postal-code"
+            >
 
         </div>
+
 
     </div>
 
 </div>
 
 
+<!-- ================================
+     INSPECTION DETAILS
+================================= -->
+
 <div class="form-section">
 
-    <h3>Inspection Details</h3>
+    <h3>
+        Inspection Details
+    </h3>
 
     <div class="form-grid">
+
 
         <div class="form-group">
 
             <label>
-                Inspection Type <span class="required">*</span>
+                Inspection Type
+                <span class="required">*</span>
             </label>
 
-            <select required>
+            <select
+                name="inspectionType"
+                required
+            >
 
-                <option value="">Select Type</option>
+                <option value="">
+                    Select Type
+                </option>
 
-                <option>Fire Safety Inspection</option>
-                <option>Business Inspection</option>
-                <option>Occupancy Inspection</option>
-                <option>Reinspection</option>
-                <option>Other</option>
+                <option value="Fire Safety Inspection">
+                    Fire Safety Inspection
+                </option>
+
+                <option value="Business Inspection">
+                    Business Inspection
+                </option>
+
+                <option value="Occupancy Inspection">
+                    Occupancy Inspection
+                </option>
+
+                <option value="Reinspection">
+                    Reinspection
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
 
             </select>
 
         </div>
+
 
         <div class="form-group">
 
@@ -487,9 +684,13 @@ footer strong {
                 Requested Date
             </label>
 
-            <input type="date">
+            <input
+                type="date"
+                name="requestedDate"
+            >
 
         </div>
+
 
         <div class="form-group full">
 
@@ -498,15 +699,21 @@ footer strong {
             </label>
 
             <textarea
+                name="additionalInformation"
                 placeholder="Provide any additional information regarding this inspection."
             ></textarea>
 
         </div>
 
+
     </div>
 
 </div>
 
+
+<!-- ================================
+     NOTICE
+================================= -->
 
 <div class="notice">
 
@@ -521,27 +728,51 @@ footer strong {
 </div>
 
 
+<!-- ================================
+     SUBMIT
+================================= -->
+
 <div class="submit-area">
 
-    <button type="submit" class="submit">
+    <button
+        type="submit"
+        class="submit"
+    >
         SUBMIT REQUEST
     </button>
 
-    <a href="applications.html" class="cancel">
+
+    <a
+        href="applications.html"
+        class="cancel"
+    >
         CANCEL
     </a>
 
 </div>
 
 
+<!-- ================================
+     STATUS
+================================= -->
+
+<div id="applicationStatus"></div>
+```
+
 </form>
 
 </main>
 
+<!-- ================================
+     FOOTER
+================================ -->
+
 <footer>
 
-
-<strong>Los Angeles Fire Department</strong>
+```
+<strong>
+    Los Angeles Fire Department
+</strong>
 
 <br><br>
 
@@ -550,9 +781,161 @@ Fire Inspection Management System
 <br>
 
 © 2026 Los Angeles Fire Department — FiveM Roleplay
-
+```
 
 </footer>
 
+<!-- ================================
+     APPLICATION SCRIPT
+================================ -->
+
+<script>
+
+const form =
+    document.getElementById("applicationForm");
+
+const statusMessage =
+    document.getElementById("applicationStatus");
+
+
+form.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const submitButton =
+            form.querySelector(
+                "button[type='submit']"
+            );
+
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+            "SUBMITTING...";
+
+
+        statusMessage.className = "";
+
+        statusMessage.style.display =
+            "block";
+
+        statusMessage.textContent =
+            "Submitting your inspection request...";
+
+
+        const formData =
+            new FormData(form);
+
+
+        const application =
+            Object.fromEntries(
+                formData.entries()
+            );
+
+
+        application.applicationType =
+            "Fire Inspection Request";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/applications",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(
+                                application
+                            )
+
+                    }
+                );
+
+
+            let result = {};
+
+
+            try {
+
+                result =
+                    await response.json();
+
+            } catch {
+
+                result = {};
+
+            }
+
+
+            if (
+                !response.ok ||
+                !result.success
+            ) {
+
+                throw new Error(
+                    result.message ||
+                    "Unable to submit your inspection request."
+                );
+
+            }
+
+
+            statusMessage.className =
+                "success";
+
+
+            statusMessage.textContent =
+                "Your inspection request was submitted successfully. " +
+                "Application ID: " +
+                result.applicationId;
+
+
+            form.reset();
+
+
+        } catch(error) {
+
+            console.error(
+                "Inspection application error:",
+                error
+            );
+
+
+            statusMessage.className =
+                "error";
+
+
+            statusMessage.textContent =
+                error.message ||
+                "An error occurred while submitting your request.";
+
+
+        } finally {
+
+            submitButton.disabled =
+                false;
+
+            submitButton.textContent =
+                "SUBMIT REQUEST";
+
+        }
+
+    }
+);
+
+</script>
+
 </body>
+
 </html>
