@@ -476,58 +476,119 @@ async function submitForm(event) {
         "-" +
         Math.floor(100000 + Math.random() * 900000);
 
-    const data = new FormData(form);
 
-    const webhookURL = "https://discordapp.com/api/webhooks/1542693212039159949/BgMDZBMVDs_ru0N5ntGtApb7WoutEL-lZMACZD4vugrjP1sWN_EzsN_KNuCuKiaEg4VL";
+    const data =
+        new FormData(form);
 
-    const message = {
-        username: "LAFD Records Requests",
-        embeds: [{
-            title: "New Personal Appearance Request",
-            color: 11800859,
-            fields: [
-                { name: "Request Number", value: number, inline: true },
-                { name: "Name", value: data.get("name") || "N/A", inline: true },
-                { name: "Organization", value: data.get("organization") || "N/A", inline: true },
-                { name: "Email", value: data.get("email") || "N/A", inline: true },
-                { name: "Case Name", value: data.get("caseName") || "N/A", inline: true },
-                { name: "Case Number", value: data.get("caseNumber") || "N/A", inline: true },
-                { name: "Proceeding Date", value: data.get("date") || "N/A", inline: true },
-                { name: "Proceeding", value: data.get("proceeding") || "N/A", inline: true },
-                { name: "Requested Member / Unit", value: data.get("member") || "N/A" },
-                { name: "Reason", value: data.get("reason") || "N/A" },
-                { name: "Additional Information", value: data.get("additional") || "N/A" }
-            ]
-        }]
+
+    const requestData = {
+
+        requestNumber:
+            number,
+
+        name:
+            data.get("name"),
+
+        organization:
+            data.get("organization"),
+
+        email:
+            data.get("email"),
+
+        caseName:
+            data.get("caseName"),
+
+        caseNumber:
+            data.get("caseNumber"),
+
+        date:
+            data.get("date"),
+
+        proceeding:
+            data.get("proceeding"),
+
+        member:
+            data.get("member"),
+
+        reason:
+            data.get("reason"),
+
+        additional:
+            data.get("additional"),
+
+        submittedAt:
+            new Date().toISOString()
+
     };
+
 
     try {
 
-        await fetch(webhookURL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(message)
-        });
+        const response =
+            await fetch(
+                "/api/PublicRecords",
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify(requestData)
+
+                }
+            );
+
+
+        const result =
+            await response
+                .json()
+                .catch(() => null);
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result?.message ||
+                "Request submission failed."
+            );
+
+        }
+
+
+        alert(
+            "Request submitted successfully.\n\n" +
+            "Request Number: " +
+            number +
+            "\n\nPlease retain this number for your records."
+        );
+
+
+        form.reset();
+
 
     } catch (error) {
 
-        console.log(error);
+        console.error(
+            "Personal appearance submission error:",
+            error
+        );
+
+
+        alert(
+            "The request could not be submitted.\n\n" +
+            "Please try again."
+        );
 
     }
-
-    alert(
-        "Request submitted successfully.\n\n" +
-        "Request Number: " + number +
-        "\n\nPlease retain this number for your records."
-    );
-
-    form.reset();
 
 }
 
 </script>
+
 
 </body>
 </html>
