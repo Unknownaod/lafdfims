@@ -40,6 +40,11 @@ body {
     width: 22px;
     height: 22px;
     margin-right: 9px;
+    object-fit: contain;
+}
+
+.city-bar span {
+    font-weight: 600;
 }
 
 header {
@@ -63,11 +68,13 @@ header {
     background: white;
     border-radius: 50%;
     padding: 3px;
+    object-fit: contain;
 }
 
 .city-logo {
     width: 47px;
     height: 47px;
+    object-fit: contain;
 }
 
 .logo-divider {
@@ -97,6 +104,10 @@ nav a {
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
+}
+
+nav a:hover {
+    text-decoration: underline;
 }
 
 .page-header {
@@ -173,6 +184,7 @@ label {
     font-size: 11px;
     font-weight: bold;
     margin-bottom: 6px;
+    color: #444;
 }
 
 .required {
@@ -189,15 +201,15 @@ textarea {
     background: white;
 }
 
-textarea {
-    min-height: 100px;
-    resize: vertical;
-}
-
 input:focus,
 select:focus,
 textarea:focus {
     border-color: #b5121b;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
 }
 
 .notice {
@@ -209,6 +221,11 @@ textarea:focus {
     color: #665522;
     font-size: 12px;
     line-height: 1.6;
+}
+
+.notice strong {
+    display: block;
+    margin-bottom: 4px;
 }
 
 .submit-area {
@@ -227,6 +244,15 @@ textarea:focus {
     cursor: pointer;
 }
 
+.submit:hover {
+    background: #951019;
+}
+
+.submit:disabled {
+    background: #777;
+    cursor: not-allowed;
+}
+
 .cancel {
     background: #333;
     color: white;
@@ -234,6 +260,32 @@ textarea:focus {
     padding: 13px 24px;
     font-size: 11px;
     font-weight: bold;
+}
+
+.cancel:hover {
+    background: #222;
+}
+
+#applicationStatus {
+    display: none;
+    margin-top: 18px;
+    padding: 14px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+#applicationStatus.success {
+    display: block;
+    background: #edf8f0;
+    border: 1px solid #b7dfc0;
+    color: #176b2c;
+}
+
+#applicationStatus.error {
+    display: block;
+    background: #fff0f0;
+    border: 1px solid #e3b5b5;
+    color: #a30000;
 }
 
 footer {
@@ -274,6 +326,20 @@ footer strong {
         grid-column: auto;
     }
 
+    .form-box {
+        padding: 22px;
+    }
+
+    .submit-area {
+        flex-direction: column;
+    }
+
+    .submit,
+    .cancel {
+        width: 100%;
+        text-align: center;
+    }
+
 }
 
 </style>
@@ -282,246 +348,457 @@ footer strong {
 
 <body>
 
+<!-- CITY BAR -->
+
 <div class="city-bar">
 
-<img src="la-city-logo.png">
+```
+<img
+    src="la-city-logo.png"
+    alt="City of Los Angeles"
+>
 
-<span>An official website of the City of Los Angeles</span>
+<span>
+    An official website of the City of Los Angeles
+</span>
+```
 
 </div>
+
+<!-- HEADER -->
 
 <header>
 
+```
 <div class="brand">
 
-<img src="lafd-logo.png" class="lafd-logo">
+    <img
+        src="lafd-logo.png"
+        class="lafd-logo"
+        alt="Los Angeles Fire Department"
+    >
 
-<div class="logo-divider"></div>
+    <div class="logo-divider"></div>
 
-<img src="la-city-logo.png" class="city-logo">
+    <img
+        src="la-city-logo.png"
+        class="city-logo"
+        alt="City of Los Angeles"
+    >
 
-<div class="brand-text">
+    <div class="brand-text">
 
-<h1>Los Angeles Fire Department</h1>
+        <h1>
+            Los Angeles Fire Department
+        </h1>
 
-<p>City of Los Angeles</p>
+        <p>
+            City of Los Angeles
+        </p>
+
+    </div>
 
 </div>
 
-</div>
 
 <nav>
 
-<a href="index.html">FIMS Home</a> <a href="applications.html">Applications</a> <a href="inspections.html">Inspections</a> <a href="fire-code.html">Fire Code</a> <a href="contact.html">Contact</a>
+    <a href="index.html">
+        FIMS Home
+    </a>
+
+    <a href="applications.html">
+        Applications
+    </a>
+
+    <a href="inspections.html">
+        Inspections
+    </a>
+
+    <a href="fire-code.html">
+        Fire Code
+    </a>
+
+    <a href="contact.html">
+        Contact
+    </a>
 
 </nav>
+```
 
 </header>
 
+<!-- PAGE HEADER -->
+
 <section class="page-header">
 
+```
 <div class="page-header-inner">
 
-<h2>Tent / Canopy Application</h2>
+    <h2>
+        Tent / Canopy Application
+    </h2>
 
-<p>Temporary Structure Fire Safety Review</p>
+    <p>
+        Temporary Structure Fire Safety Review
+    </p>
 
 </div>
+```
 
 </section>
 
+<!-- MAIN -->
+
 <main class="container">
 
-<form class="form-box">
+<form
+    class="form-box"
+    id="applicationForm"
+>
 
-<h2>Tent / Canopy Application</h2>
+```
+<h2>
+    Tent / Canopy Application
+</h2>
 
 <div class="red-line"></div>
 
-<div class="form-section">
 
-<h3>Applicant Information</h3>
-
-<div class="form-grid">
-
-<div class="form-group">
-
-<label>Applicant Name <span class="required">*</span></label>
-
-<input type="text" required>
-
-</div>
-
-<div class="form-group">
-
-<label>Phone Number <span class="required">*</span></label>
-
-<input type="tel" required>
-
-</div>
-
-<div class="form-group">
-
-<label>Email Address</label>
-
-<input type="email">
-
-</div>
-
-<div class="form-group">
-
-<label>Organization</label>
-
-<input type="text">
-
-</div>
-
-</div>
-
-</div>
+<!-- APPLICANT INFORMATION -->
 
 <div class="form-section">
 
-<h3>Location & Event</h3>
+    <h3>
+        Applicant Information
+    </h3>
 
-<div class="form-grid">
+    <div class="form-grid">
 
-<div class="form-group full">
 
-<label>Installation Address <span class="required">*</span></label>
+        <div class="form-group">
 
-<input type="text" required>
+            <label>
+                Applicant Name
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="text"
+                name="applicantName"
+                autocomplete="name"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Phone Number
+                <span class="required">*</span>
+            </label>
+
+            <input
+                type="tel"
+                name="phone"
+                autocomplete="tel"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                autocomplete="email"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Organization
+            </label>
+
+            <input
+                type="text"
+                name="organization"
+                autocomplete="organization"
+            >
+
+        </div>
+
+
+    </div>
 
 </div>
 
-<div class="form-group">
 
-<label>Installation Date <span class="required">*</span></label>
-
-<input type="date" required>
-
-</div>
-
-<div class="form-group">
-
-<label>Removal Date</label>
-
-<input type="date">
-
-</div>
-
-</div>
-
-</div>
+<!-- LOCATION & EVENT -->
 
 <div class="form-section">
 
-<h3>Structure Information</h3>
+    <h3>
+        Location & Event
+    </h3>
 
-<div class="form-grid">
+    <div class="form-grid">
 
-<div class="form-group">
 
-<label>Structure Type</label>
+        <div class="form-group full">
 
-<select>
+            <label>
+                Installation Address
+                <span class="required">*</span>
+            </label>
 
-<option>Tent</option>
-<option>Canopy</option>
-<option>Temporary Structure</option>
-<option>Other</option>
+            <input
+                type="text"
+                name="installationAddress"
+                autocomplete="street-address"
+                required
+            >
 
-</select>
+        </div>
 
-</div>
 
-<div class="form-group">
+        <div class="form-group">
 
-<label>Number of Structures</label>
+            <label>
+                Installation Date
+                <span class="required">*</span>
+            </label>
 
-<input type="number" min="1">
+            <input
+                type="date"
+                name="installationDate"
+                required
+            >
 
-</div>
+        </div>
 
-<div class="form-group">
 
-<label>Length</label>
+        <div class="form-group">
 
-<input type="text" placeholder="e.g. 40 ft">
+            <label>
+                Removal Date
+            </label>
 
-</div>
+            <input
+                type="date"
+                name="removalDate"
+            >
 
-<div class="form-group">
+        </div>
 
-<label>Width</label>
 
-<input type="text" placeholder="e.g. 30 ft">
-
-</div>
-
-<div class="form-group">
-
-<label>Maximum Occupancy</label>
-
-<input type="number" min="0">
-
-</div>
-
-<div class="form-group">
-
-<label>Open Flame / Cooking?</label>
-
-<select>
-
-<option>No</option>
-<option>Yes</option>
-
-</select>
+    </div>
 
 </div>
 
-<div class="form-group full">
 
-<label>Additional Information</label>
+<!-- STRUCTURE INFORMATION -->
 
-<textarea
-placeholder="Provide any additional information regarding the temporary structure."
-></textarea>
+<div class="form-section">
+
+    <h3>
+        Structure Information
+    </h3>
+
+    <div class="form-grid">
+
+
+        <div class="form-group">
+
+            <label>
+                Structure Type
+            </label>
+
+            <select name="structureType">
+
+                <option value="Tent">
+                    Tent
+                </option>
+
+                <option value="Canopy">
+                    Canopy
+                </option>
+
+                <option value="Temporary Structure">
+                    Temporary Structure
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Number of Structures
+            </label>
+
+            <input
+                type="number"
+                name="numberOfStructures"
+                min="1"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Length
+            </label>
+
+            <input
+                type="text"
+                name="length"
+                placeholder="e.g. 40 ft"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Width
+            </label>
+
+            <input
+                type="text"
+                name="width"
+                placeholder="e.g. 30 ft"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Maximum Occupancy
+            </label>
+
+            <input
+                type="number"
+                name="maximumOccupancy"
+                min="0"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                Open Flame / Cooking?
+            </label>
+
+            <select name="openFlameCooking">
+
+                <option value="No">
+                    No
+                </option>
+
+                <option value="Yes">
+                    Yes
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group full">
+
+            <label>
+                Additional Information
+            </label>
+
+            <textarea
+                name="additionalInformation"
+                placeholder="Provide any additional information regarding the temporary structure."
+            ></textarea>
+
+        </div>
+
+
+    </div>
 
 </div>
 
-</div>
 
-</div>
+<!-- NOTICE -->
 
 <div class="notice">
 
-<strong>Important</strong>
+    <strong>
+        Important
+    </strong>
 
-Additional documentation, site information, or Fire Department
-requirements may be requested during the review process.
+    Additional documentation, site information, or Fire Department
+    requirements may be requested during the review process.
 
 </div>
+
+
+<!-- SUBMIT -->
 
 <div class="submit-area">
 
-<button type="submit" class="submit">
-SUBMIT APPLICATION
-</button>
+    <button
+        type="submit"
+        class="submit"
+    >
+        SUBMIT APPLICATION
+    </button>
 
-<a href="applications.html" class="cancel">
-CANCEL
-</a>
+
+    <a
+        href="applications.html"
+        class="cancel"
+    >
+        CANCEL
+    </a>
 
 </div>
+
+
+<div id="applicationStatus"></div>
+```
 
 </form>
 
 </main>
 
+<!-- FOOTER -->
+
 <footer>
 
-<strong>Los Angeles Fire Department</strong>
+```
+<strong>
+    Los Angeles Fire Department
+</strong>
 
 <br><br>
 
@@ -530,8 +807,161 @@ Fire Inspection Management System
 <br>
 
 © 2026 Los Angeles Fire Department — FiveM Roleplay
+```
 
 </footer>
+
+<!-- APPLICATION SUBMISSION -->
+
+<script>
+
+const form =
+    document.getElementById("applicationForm");
+
+const statusMessage =
+    document.getElementById("applicationStatus");
+
+
+form.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+
+        const submitButton =
+            form.querySelector(
+                "button[type='submit']"
+            );
+
+
+        submitButton.disabled = true;
+
+        submitButton.textContent =
+            "SUBMITTING...";
+
+
+        statusMessage.className = "";
+
+        statusMessage.style.display =
+            "block";
+
+        statusMessage.textContent =
+            "Submitting your tent / canopy application...";
+
+
+        const formData =
+            new FormData(form);
+
+
+        const application =
+            Object.fromEntries(
+                formData.entries()
+            );
+
+
+        application.applicationType =
+            "Tent / Canopy Application";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/applications",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(
+                                application
+                            )
+
+                    }
+                );
+
+
+            let result = {};
+
+
+            try {
+
+                result =
+                    await response.json();
+
+            } catch {
+
+                result = {};
+
+            }
+
+
+            if (
+                !response.ok ||
+                !result.success
+            ) {
+
+                throw new Error(
+                    result.message ||
+                    "Unable to submit your application."
+                );
+
+            }
+
+
+            statusMessage.className =
+                "success";
+
+
+            statusMessage.textContent =
+                "Your tent / canopy application was submitted successfully. " +
+                "Application ID: " +
+                (
+                    result.applicationId ||
+                    "Pending"
+                );
+
+
+            form.reset();
+
+
+        } catch(error) {
+
+            console.error(
+                "Application submission error:",
+                error
+            );
+
+
+            statusMessage.className =
+                "error";
+
+
+            statusMessage.textContent =
+                error.message ||
+                "An error occurred while submitting your application.";
+
+
+        } finally {
+
+            submitButton.disabled =
+                false;
+
+            submitButton.textContent =
+                "SUBMIT APPLICATION";
+
+        }
+
+    }
+);
+
+</script>
 
 </body>
 
